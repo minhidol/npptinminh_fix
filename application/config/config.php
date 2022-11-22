@@ -16,8 +16,8 @@
 */
 #$config['base_url']	= 'http://118.69.111.40:8003/';
 #$config['base_url']	= 'http://118.69.111.40:8003/npptinminh/';
-$config['base_url']	= 'http://localhost:8888/';
-#$config['base_url']	= 'https://www.npptinminh.com';
+#$config['base_url']	= 'http://localhost:8888/';
+$config['base_url']	= 'https://www.npptinminh.com';
 /*
 |--------------------------------------------------------------------------
 | Index File

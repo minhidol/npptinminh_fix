@@ -1,7 +1,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-RewriteCond %{HTTP} off
-RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]
+
 
 </IfModule>
