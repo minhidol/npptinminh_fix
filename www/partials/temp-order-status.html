@@ -1,0 +1,507 @@
+<div ng-app="dashboard" ng-controller="statusOrderController">
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span><span class="ico  gray random title"></span> Hiện trạng đơn hàng</span>
+        </div><!-- End header -->
+        <div class=" clear"></div>
+        <div class="content">
+            <div ng-repeat="(key, shipment) in shipments" style="margin-bottom: 70px">
+                <div class="section">
+                    <table class="table borderless" style="max-width: 900px">
+                        <tr>
+                            <td><label>Xe</label></td>
+                            <td>
+                                <input type="text" readonly value="{{shipment.truck_detail.name}}"
+                                       class="small form-control"/>
+                            </td>
+                            <td>
+                                <label>Tài xế</label>
+                            </td>
+                            <td>
+                                <input type="text" readonly value="{{shipment.driver}}"
+                                       class="small  form-control"/>
+                            </td>
+                            <td>
+                                <button ng-if="shipment.status == 0" data-shipment-id="{{shipment.id}}"
+                                        data-status="{{shipment.status}}" ng-click="changeStatus($event, key)"
+                                        class="uibutton confirm large" ng-disabled="shipment.daxuatphat">Xuất phát
+                                </button>
+                                <button ng-if="shipment.status == 1" data-shipment-id="{{shipment.id}}"
+                                        data-status="{{shipment.status}}" ng-click="changeStatus($event, key)"
+                                        class="uibutton special large" ng-disabled="shipment.dakethuc">Kết thúc
+                                </button>
+                                <button ng-if="shipment.status == 2" data-shipment-id="{{shipment.id}}"
+                                        data-status="{{shipment.status}}" ng-click="changeStatus($event, key)"
+                                        class="uibutton large" ng-disabled="shipment.dagiao">Đã Giao
+                                </button>
+                            </td>
+                            <td>
+                                <button ng-if="shipment.status == 0" class="uibutton large"
+                                        ng-click="inhoadon(shipment.id)">In hóa đơn
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Ngày</label></td>
+                            <td>
+                                <input type="text" readonly value="{{shipment.created}}" class="small form-control"/>
+                            </td>
+                            <td><label>Lơ xế</label></td>
+                            <td>
+                                <input type="text" readonly value="{{shipment.sub_driver}}"
+                                       class="small form-control" data-toggle="tooltip" data-placement="top"
+                                       title="{{shipment.sub_driver}}"/>
+                            </td>
+                            <td>
+                                <button ng-if="shipment.status == 0" class="uibutton special large"
+                                        ng-click="huydonhang(shipment.id)">Hủy Chuyến
+                                </button>
+                            </td>
+                            <td style="text-align: right" ng-if="shipment.status == 0 || shipment.status == 1">
+                                <a class="uibutton confirm large"
+                                   href="/index.php/dashboard/#/order-divide/{{shipment.id}}" target="_blank">Thống kê
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="error{{key}}" style="background: #e58582" ng-if="hasError['e'+shipment.id]">
+                        {{hasError['e' + shipment.id]}}
+                    </div>
+                </div>
+                <div class="row">
+                    <form>
+                        <div class="col-md-9">
+                            <div class="tableName">
+                                <table class="display">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="th_wrapp">Stt</div>
+                                        </th>
+                                        <th>
+                                            <div class="th_wrapp">Địa chỉ</div>
+                                        </th>
+                                        <th>
+                                            <div class="th_wrapp">Thành tiền</div>
+                                        </th>
+                                        <th>
+                                            <div class="th_wrapp">Hiện trạng</div>
+                                        </th>
+                                        <th ng-if="shipment.status < 1" style="text-align: right">
+                                            <div class="th_wrapp">Nợ cũ</div>
+                                        </th>
+                                        <th ng-if="shipment.status == 2">
+                                            <div class="th_wrapp">Thanh toán</div>
+                                        </th>
+                                        <th ng-if="shipment.status == 2">
+                                            <div class="th_wrapp">Nợ</div>
+                                        </th>
+                                        <th ng-if="shipment.status == 2">
+                                            <span style="color:red">Lệch</span>
+                                        </th>
+                                        <th ng-if="shipment.status == 2">
+                                            <span style="color:red">{{tongTienTheoTo(key) - tongGiaTriChuyen(key) | number}}</span>
+                                        </th>
+                                        <th ng-if="shipment.status == 2">
+                                            <span style="width: 120px">{{ tongTienTheoTo(key) | number }}</span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="show_product">
+                                    <tr ng-repeat="(index,item) in shipment.orders" data-shipment-id="{{shipment.id}}"
+                                        data-order-id="{{item.id}}" class="odd gradeX" data-id="{{item.id}}">
+                                        <td>{{index + 1}}</td>
+                                        <td>
+                                            <div style="display: inline-block">{{item.customer_detail.address}}</div>
+                                            <span class="ico color zoom show-popover" style="float: right; margin-right: 30px" ng-click="showPopover($event.currentTarget); $event.stopPropagation();" data-orderid="{{item.id}}"></span>
+                                            <span ng-if="item.note.length > 0" style="float: right; margin-right: 15px" title="{{item.note}}"><span class="ico color attachment"></span></span>
+                                        </td>
+                                        <td>
+                                            {{item.total_price * 1 - item.totalPromotionValue * 1 + item.old_debit * 1 | number}}
+                                        </td>
+                                        <td>
+                                            <span ng-if="shipment.status != 2">{{item.status.name}}</span>
+                                            <select ng-if="shipment.status == 2"
+                                                    id="status_shipment_{{shipment.id}}_order_{{item.id}}"
+                                                    class="form-control" style="min-width: 120px"
+                                                    ng-model="shipment.orders[index].status"
+                                                    ng-change="changeShipmentOrderResult(key, index)"
+                                            >
+                                                <option value="3">Đã Giao</option>
+                                                <option value="4">Xuất vào kho</option>
+                                                <option value="6">Lấy 1 phần hàng</option>
+                                            </select>
+                                        </td>
+                                        <td ng-if="shipment.status  < 1"  style="text-align: right">
+                                            {{item.currentDebit | number}} &nbsp;
+                                            <a class="btn btn-info add-debit-of-{{item.customer_id}}"
+                                               ng-if="item.currentDebit > 0"
+                                               ng-click="addDebit(key, index, item.customer_id)"
+                                               id="add-debit{{key}}{{index}}">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                            <a class="btn btn-danger" ng-if="item.currentDebit > 0"
+                                               ng-click="removeDebit(key, index, item.customer_id)"
+                                               id="remove-debit-{{key}}-{{index}}" style="display: none">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                            </a>
+
+                                        </td>
+                                        <td ng-if="shipment.status == 2" style="width: 100px">
+                                            <input id="price_shipment_{{shipment.id}}_order_{{item.id}}" type="text" class="form-control"
+                                                   ng-model="shipment.orders[index].pay" number-input
+                                                   style="min-width: 120px"/>
+                                            <input id="debit_shipment_{{shipment.id}}_order_{{item.id}}" type="hidden"
+                                                   class="medium"/>
+                                        </td>
+                                        <td ng-if="shipment.status == 2">{{no(item) | number}}</td>
+                                        <td ng-if="shipment.status == 2">
+                                            <div ng-if="index < shipment.paymentDetail.length">
+                                                {{shipment.paymentDetail[index].tien | number}}
+                                            </div>
+                                        </td>
+                                        <td ng-if="shipment.status == 2">
+                                            <div ng-if="index < shipment.paymentDetail.length">
+                                                <input ng-model="shipment.paymentDetail[index].soluong" number-input>
+                                            </div>
+                                        </td>
+                                        <td ng-if="shipment.status == 2">
+                                            <div ng-if="index < shipment.paymentDetail.length">
+                                                {{ shipment.paymentDetail[index].tien * shipment.paymentDetail[index].soluong | number}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="shipment.status == 2">
+                                        <td></td>
+                                        <td></td>
+                                        <td><strong>{{tongthanhtien(shipment) | number}}</strong></td>
+                                        <td></td>
+                                        <td><strong>{{tongthanhtoan(shipment) | number}}</strong></td>
+                                        <td><strong>{{tongno(shipment) | number}}</strong></td>
+                                        <td>
+                                            <div ng-if="shipment.orders.length < shipment.paymentDetail.length">
+                                                {{shipment.paymentDetail[shipment.orders.length].tien | number}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div ng-if="shipment.orders.length < shipment.paymentDetail.length">
+                                                <input ng-model="shipment.paymentDetail[shipment.orders.length].soluong"
+                                                       number-input>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div ng-if="shipment.orders.length < shipment.paymentDetail.length">
+                                                {{ shipment.paymentDetail[shipment.orders.length].tien * shipment.paymentDetail[shipment.orders.length].soluong | number}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="(totienIndex, paymentDetail) in shipment.paymentDetail"
+                                        ng-if="shipment.status == 2 && totienIndex > shipment.orders.length">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <div>
+                                                {{paymentDetail.tien | number}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <input ng-model="shipment.paymentDetail[totienIndex].soluong"
+                                                       number-input class="form-control">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                {{ paymentDetail.tien * shipment.paymentDetail[totienIndex].soluong | number}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div ng-if="shipment.status == 2" style="margin-top: 45px">
+                                <div>
+                                    <a class="uibutton" data-shipment-id="{{shipment.id}}" data-shipmentindex="{{key}}"
+                                       ng-click="handlingOrder($event);" ng-dblclick="false"
+                                       ng-disabled="isProcessing">xử lý</a>
+                                </div>
+                                <div style="padding:20px 12px">
+                                    <label>Ghi chú</label>
+                                    <textarea class="form-control" ng-model="shipment.note" rows="7"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="reasonmodal" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Lý do trả hàng về kho:
+                </div>
+                <div class="modal-body">
+                    <textarea id="returning-reason" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="returnWarehouseReason()"
+                            style="text-align: center">
+                        Lưu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="return-haft-order" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document" ng-if="inprogressOrder">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Chi tiết lấy hàng - {{inprogressOrder.customer_detail.address}}
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="tableName">
+                            <table id="tabel_product_type" class="display" style="text-align: left">
+                                <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Số lượng nhận</th>
+                                    <th>Trả về kho</th>
+                                    <th>Đơn giá</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="(key,orderdetail) in inprogressOrder.orderDetail"
+                                    data-product-id="{{orderdetail.product_id}}">
+                                    <td>{{key + 1}}</td>
+                                    <td>{{orderdetail.product_name}}</td>
+                                    <td>
+                                        <span id="show_quantity_retail_{{orderdetail.product_id}}">{{orderdetail.quantity}}</span>
+                                    </td>
+                                    <td>
+                                        <input class="quantity_{{orderdetail.product_id}} warehouse_quantity"
+                                               data-product-id="{{orderdetail.product_id}}"
+                                               ng-keyup="quantityWarehouse(key)" type="text"
+                                               ng-model="inprogressOrder.orderDetail[key].received" number-input/>
+                                    </td>
+                                    <td>{{orderdetail.quantity - orderdetail.received}}</td>
+                                    <td>
+                                        <span>{{orderdetail.price | number}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="new_price"
+                                              id="show_real_quantity_retail_{{orderdetail.product_id}}">{{orderdetail.price * orderdetail.received | number}}</span>
+                                        <input type="hidden" value="{{orderdetail.price}}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;border: none;font-weight: bold" colspan="6">Tiền hàng
+                                    </td>
+                                    <td>{{inprogressOrder.tempAmount | number}}</td>
+                                </tr>
+                                <tr ng-if="inprogressOrder.totalPromotionValue > 0">
+                                    <td style="text-align: right;border: none;font-weight: bold" colspan="6">Chiết khấu
+                                    </td>
+                                    <td>- {{inprogressOrder.totalPromotionValue | number}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;border: none;font-weight: bold" colspan="6">Nợ cũ
+                                    </td>
+                                    <td>{{inprogressOrder.totalDebit | number}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;font-weight: bold" colspan="6">Tổng tiền</td>
+                                    <td>{{inprogressOrder.total_price | number}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" ng-if="inprogressOrder.totalPromotionValue || inprogressOrder.promotionProducts.length > 0">
+                            <div class="row">
+                                <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+                                    <h3 style="margin-top: 10px">Danh sách khuyến mãi</h3>
+                                </div>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                <th>STT</th>
+                                <th>Tên Hàng</th>
+                                <th>ĐV Tính</th>
+                                <th>Số Lượng</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="(j,detail) in inprogressOrder.promotionProducts">
+                                    <td scope="row">{{j + 1}}</td>
+                                    <td>{{detail.name}}</td>
+                                    <td>{{detail.unit}}</td>
+                                    <td>
+                                        <input class="form-control" value="{{detail.quantity}}" number-input="" ng-model="detail.quantity">
+                                    </td>
+                                    <td>--</td>
+                                    <th scope="row" style="width: 51px">
+                                        <a href="#" ng-click="deletePromotion(detail)">Xóa</a>
+                                    </th>
+                                </tr>
+                                <tr ng-if="inprogressOrder.totalPromotionValue">
+                                    <td scope="row">{{j + 1}}</td>
+                                    <td>Giảm giá</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>
+                                        <input class="form-control" ng-model="inprogressOrder.totalPromotionValue" value="{{inprogressOrder.totalPromotionValue}}" number-input ng-change="calPrice()">
+                                    </td>
+                                    <th scope="row" style="width: 51px">
+                                        <a href="#" ng-click="deletePromotionMoney()">Xóa</a>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                    <div>
+                        <div class="input-group">
+                            <span class="input-group-addon">Lý do trả hàng</span>
+                            <textarea class="form-control" ng-model="inprogressOrder.note"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" style="text-align: center" ng-click="updateDefaultPayment()">
+                        Lưu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="processing-modal" class="modal fade" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2 class="text-success">Đang xử lý...</h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="width: 100%; display: none;" id="print-area">
+        <div class="row row-print" ng-repeat="orderdata in printData">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12"><strong>CÔNG TY TNHH TM TÍN MINH</strong></div>
+            <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9">
+                <strong>Địa chỉ: </strong>27 Dương Khuê, P. Hiệp Tân, Q. Tân Phú
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                {{currentDate}}
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <table class="table" style="margin-left: -8px">
+                    <tbody>
+                    <tr>
+                        <td style="border: none;padding: 2px 8px;"><strong>Điện thoại: </strong>0888 111 066</td>
+                        <td style="border: none;padding: 2px 8px;">Tài xế:{{orderdata.driver}}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;padding: 2px 8px;"><strong>Saler:</strong> {{orderdata.saler_name}}</td>
+                        <td style="border: none;padding: 2px 8px;">Phụ xe: {{orderdata.sub_driver}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border: none;padding: 2px 8px;">
+                            <strong>Khách hàng: </strong>{{orderdata.customer_name}} - {{orderdata.customer_store_name}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;padding: 2px 8px;"><strong>Địa chỉ:</strong>
+                            {{orderdata.customer_address}}
+                        </td>
+                        <td style="border: none;padding: 2px 8px;">ĐT: {{orderdata.customer_phone}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border: none;padding: 2px 8px;">
+                            <strong>Ghi chú: </strong>{{orderdata.note}}
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <table class="table order">
+                    <thead>
+                    <th>STT</th>
+                    <th>Tên Hàng</th>
+                    <th>ĐV Tính</th>
+                    <th>Số Lượng</th>
+                    <th class="money-align">Đơn Giá</th>
+                    <th class="money-align">Thành tiền</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="(index, product) in orderdata.detail">
+                        <td scope="row">{{index + 1}}</td>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.unit_name }}</td>
+                        <td>{{product.quantity | number:0}}</td>
+                        <td class="money-align">{{product.price | number:0}}</td>
+                        <td class="money-align">{{product.price * product.quantity | number:0}}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td scope="row"></td>
+                        <td><strong>Tổng cộng</strong></td>
+                        <td></td>
+                        <td><strong>{{totalQuantity(orderdata.detail) | number:0}}</strong></td>
+                        <td></td>
+                        <td class="money-align"><strong>{{orderdata.total_price | number:0}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"></td>
+                        <td colspan="4" style="text-align: right"><strong>Nợ cũ: </strong></td>
+                        <td class="money-align"><strong>{{orderdata.currentDebit | number:0}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td scope="row"></td>
+                        <td colspan="4" style="text-align: right"><strong>Tổng cộng:</strong></td>
+                        <td class="money-align">
+                            <strong>{{orderdata.currentDebit * 1 + orderdata.total_price * 1 | number:0}}</strong></td>
+                    </tr>
+                    <tr style="border: none" ng-repeat-start="promotion in orderdata.promotions">
+                        <td scope="row"></td>
+                        <td colspan="5"><i>*{{promotion.name}}</i></td>
+                    </tr>
+                    <tr ng-repeat="(j,detail) in promotion.detail">
+                        <td scope="row">{{j + 1}}</td>
+                        <td>{{detail.title}}</td>
+                        <td>{{detail.unit}}</td>
+                        <td>{{detail.quantity | number:0}}</td>
+                        <td class="money-align">{{detail.value | number:0}}</td>
+                        <td class="money-align">{{detail.totalValue | number:0}}</td>
+                    </tr>
+                    <tr ng-repeat-end></tr>
+                    <tr ng-if="orderdata.promotions.length > 0">
+                        <td colspan="5" style="text-align: right;"><strong>Còn lại:</strong></td>
+                        <td class="money-align">
+                            <strong>{{orderdata.total_price * 1 - orderdata.totalPromotionValue * 1 + orderdata.currentDebit * 1 | number:0}}</strong>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</div>

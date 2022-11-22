@@ -1,0 +1,67 @@
+<div ng-app="dashboard" ng-controller="Retail">
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span><span class="ico  gray random title"></span>Thanh lý hàng lẻ</span>
+        </div><!-- End header -->
+        <div class=" clear"></div>
+        <div class="content">
+            <div class="section" style="margin-top: 25px">
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div><label>Danh sách hàng lẻ</label></div>
+                        <table class="table display">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="prod in listProduct">
+                                <td><input id="check-{{prod.id}}" type="checkbox" ng-checked="selectedProds[prod.id].length > 0" ng-click="selectProd(prod)"></td>
+                                <td>{{prod.name}}</td>
+                                <td>{{prod.quantity}} ({{prod.unit_display}})</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                        <div><label>Thanh lý</label></div>
+                        <table class="table display selectedProd">
+                            <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <td>Còn lại</td>
+                                <th>Giá</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="seProd in selectedProds">
+                                <td>{{seProd.name}}</td>
+                                <td>
+                                    <div class="input-group" style="max-width: 160px">
+                                        <input class="form-control" name="seProdQuantity" ng-model="seProd.removeQuantity" number-input="">
+                                        <span class="input-group-addon">({{seProd.unit_display}})</span>
+                                    </div>
+
+                                </td>
+                                <td>{{seProd.quantity - seProd.removeQuantity | number}}</td>
+                                <td><input ng-model="seProd.price" ng-change="calTotalValue()"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align: right"><strong>Tổng cộng</strong></td>
+                                <td><strong>{{totalValue | number}}</strong></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <input class="uibutton loading" title="Saving" type="button" ng-click="createBill($event);disabled=true" ng-disabled="disabled" value="Tạo hóa đơn"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

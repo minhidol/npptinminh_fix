@@ -1,0 +1,50 @@
+.promotion-pro-give-pro{
+  min-height: 350px;
+}
+.promotion-give, .promotion-award{
+  display: inline-block;
+  width: 45%;
+}
+.promotion-give > div:first-child{
+  width: 70%;
+  display: inline-block;
+}
+.promotion-give > div:last-child{
+  width: 20%;
+  display: inline-block;
+  padding-left: 10px;
+}
+.promotion-give div:last-child input{
+  width: 100%;
+  position: relative;
+  bottom: 7px;
+  height: 22px;
+}
+.arrow-between{
+  width: 9%;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  bottom: 10px;
+  font-size: 20px;
+}
+
+.promotion-award > div{
+  display: inline-block;
+}
+
+.promotion-award > div:first-child{
+  width: 50%;
+}
+.promotion-award > div:nth-child(2){
+  width: 30%;
+}
+.promotion-award > div:last-child{
+  width: 15%;
+}
+.promotion-award > div:last-child input{
+  width: 100%;
+  position: relative;
+  bottom: 7px;
+  height: 22px;
+}

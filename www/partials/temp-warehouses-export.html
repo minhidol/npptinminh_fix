@@ -1,0 +1,237 @@
+<div ng-app="dashboard" ng-controller="warehousesExportController" id="warehousesExportController">
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span><span class="ico  gray random title"></span>Chi tiết xuất - nhập - tồn</span>
+            <span class="text-right">Tổng giá trị tồn kho ngày {{to_date}}: {{totalValue | number}}</span>
+        </div><!-- End header -->
+        <div class=" clear"></div>
+        <div class="content">
+            <div class="section row">
+                <div class="col-md-3 col-lg-3 col-ms-5 col-xs-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Ngày..." name="reportdate"
+                               ng-click="openTo($event)"
+                               datepicker-popup="dd-MM-yyyy" ng-model="to_date" is-open="toOpened" close-text="Close">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 col-ms-5 col-xs-5">
+                        <select class="form-control" name="wid" ng-model="warehouseselect">
+                            <option ng-repeat="wh in listWarehouse" value="{{wh.id}}">{{wh.name}}</option>
+                        </select>
+                </div>
+                <div class="col-md-1 col-lg-1 col-ms-1 col-xs-1">
+                    <button class="btn btn-success" ng-click="getData()">Xem</button>
+                </div>
+                <div class="col-md-5 col-lg-5 col-ms-1 col-xs-1 text-right">
+                    Giá trị tồn kho ngày <strong>{{to_date}}</strong> của kho đang chọn: <strong>{{totalValueCurrentWarehouse | number}}</strong>
+                </div>
+            </div>
+            <div class="total-wrapper" id="table-wrapper">
+                <table id="export-history-tb" class="stripe row-border order-column" border="1">
+                    <thead>
+                    <tr>
+                        <th>
+                            <div style="width: 150px">Sản phẩm</div>
+                        </th>
+                        <th>
+                            <div style="width: 80px">Đầu ngày</div>
+                        </th>
+                        <th ng-repeat="time in exports.header.import">
+                            <div style="width: 80px">Nhập<br/>{{time}}</div>
+                        </th>
+                        <th><div style="width: 80px">Trả về</div></th>
+                        <th ng-repeat="chuyen in exports.header.export">
+                            <div style="width: 80px">{{chuyen.truck}}<br/>Chuyến {{chuyen.index}}</div>
+                        </th>
+                        <th ng-repeat="time in exports.header.directsale" data-toggle="tooltip" data-placement="top" title="{{time.detail}}">
+                            <a href="{{time.link}}" target="_blank">
+                            <div style="width: 80px">Bán lẻ<br/>{{time.time}}</div>
+                            </a>
+                        </th>
+<!--                        <th>-->
+<!--                            <div style="width: 80px">Chia lẻ</div>-->
+<!--                        </th>-->
+                        <th>
+                            <div style="width: 80px">Cuối ngày</div>
+                        </th>
+<!--                        <th>-->
+<!--                            <div style="width: 110px">Cuối ngày</div>-->
+<!--                        </th>-->
+<!--                        <th>-->
+<!--                            <div style="width: 80px">Lệch</div>-->
+<!--                        </th>-->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="(index, product) in exports.data">
+                        <td>{{product.type}} - {{product.name}}</td>
+                        <td>{{product.startdateinv.quantity | number}} <span ng-if="product.startdateinv.odd_quantity > 0"> (+{{product.startdateinv.odd_quantity | number }} lẻ)</span> </td>
+                        <td class="import-color {{getClass(importtime(time, product))}}" ng-repeat="time in exports.header.import">{{importtime(time, product) | number}}</td>
+                        <td class="import-color {{getClass(product.returned)}}">{{product.returned | number}}</td>
+                        <td class="export-color {{getClass(exportTruct(tructId, product))}}" ng-repeat="(tructId, truct) in exports.header.export">{{exportTruct(tructId, product) | number}}</td>
+                        <td class="export-color {{getClass(directsaletime(directSaleIndex, product))}}" ng-repeat="(directSaleIndex, time) in exports.header.directsale">{{directsaletime(directSaleIndex, product) | number}}</td>
+<!--                        <td></td>-->
+                        <td>{{product.enddateinv.quantity | number}} <span ng-if="product.enddateinv.odd_quantity > 0"> (+{{product.enddateinv.odd_quantity | number }} lẻ)</span> </td>
+                        <!--                        <td><input type="text" class="endofdate" ng-model="exports.data[$index].deviation.manual_end_date" ng-change="refreshdatatable()"></td>-->
+                        <!--                        <td><span class="compare">{{product.enddateinv.quantity - product.deviation.manual_end_date | number}}</span></td>-->
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td>Tổng cộng:</td>
+                        <td>{{ sumInv('start')}}</td>
+                        <td ng-repeat="time in exports.header.import">{{sumImport(time) | number}}</td>
+                        <td>{{sumReturned() | number}}</td>
+                        <td ng-repeat="(tructId, truct) in exports.header.export">{{sumExport(tructId) | number}}</td>
+                        <td ng-repeat="(directSaleIndex, time) in exports.header.directsale"> {{sumDirectSale(directSaleIndex) | number}}</td>
+                        <td>{{ sumInv('end')}}</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+<!--            <div class="" style="text-align: center;margin-top: 25px;">-->
+<!--                <button class="btn btn-success" ng-click="saveData()">Save</button>-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    table#export-history-tb {
+        position: relative;
+        border-collapse: collapse;
+        table-layout: fixed;
+        overflow: scroll;
+        margin: 0;
+    }
+    table#export-history-tb tr:hover, table#export-history-tb tr:hover td{
+        background-color: #eaf7ff;
+    }
+    #export-history-tb th, #export-history-tb td {
+        padding: 10px 5px;
+    }
+    table#export-history-tb thead tr th {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        top: 0;
+        background: #5cb85c;
+        color: #FFF;
+        min-width: 60px;
+        text-align: center;
+    }
+    table#export-history-tb thead th a{
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    table#export-history-tb thead th:first-child {
+        left: 0;
+        z-index: 1;
+        text-align: left;
+    }
+
+    table#export-history-tb thead th:nth-child(2) {
+        left: 150px;
+        z-index: 1;
+    }
+
+    table#export-history-tb thead th:last-child {
+        top: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    /*table#export-history-tb thead th:nth-last-child(2) {*/
+    /*    top: 0;*/
+    /*    right: 80px;*/
+    /*    z-index: 1;*/
+    /*}*/
+
+    table#export-history-tb tbody tr td:first-child {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        left: 0;
+        background: #FFF;
+        border-right: 1px solid #CCC;
+        text-align: left;
+    }
+
+    table#export-history-tb tbody tr td:nth-child(2) {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        left: 150px;
+        background: #FFF;
+        border-right: 1px solid #CCC;
+    }
+
+    table#export-history-tb tbody tr td:last-child {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        right: 0;
+        background: #FFF;
+        border-right: 1px solid #CCC;
+    }
+
+    /*table#export-history-tb tbody tr td:nth-last-child(2) {*/
+    /*    position: -webkit-sticky; !* for Safari *!*/
+    /*    position: sticky;*/
+    /*    right: 80px;*/
+    /*    background: #FFF;*/
+    /*    border-right: 1px solid #CCC;*/
+    /*}*/
+
+    #table-wrapper {
+        overflow: scroll;
+        position: relative;
+        max-height: 500px;
+        max-width: 100%;
+        margin-top: 30px;
+        text-align: center;
+    }
+    .export-color{
+        background-color: lightgoldenrodyellow;
+    }
+    .import-color{
+        background-color: lightblue;
+    }
+    .export-color.has-data{
+        background-color: orange;
+        color: white;
+        font-weight: bold;
+    }
+    .import-color.has-data{
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+    }
+    tr:hover .export-color, tr:hover .import-color{
+        color: #0c0c0c;
+    }
+
+    table#export-history-tb th:after,
+    table#export-history-tb th:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+    }
+
+    table#export-history-tb th:before {
+        top: -1px;
+        border-top: 1px solid black;
+    }
+
+    table#export-history-tb th:after {
+        bottom: -1px;
+        border-bottom: 1px solid black;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#export-history-tb tbody tr td:nth-last-child(2)').css('right', $('#export-history-tb tbody tr td:last-child').width());
+
+        var firstCol = $('#export-history-tb tbody tr td:first-child');
+        var left = firstCol.width() + parseInt(firstCol.css('padding-left')) + parseInt(firstCol.css('padding-right'));
+        // $('#export-history-tb tbody tr td:nth-child(2)').css('left', left + 'px');
+    })
+</script>

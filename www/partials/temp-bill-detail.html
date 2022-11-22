@@ -1,0 +1,115 @@
+<div ng-app="dashboard" ng-controller="billDetailController">
+    <div class="onecolumn" style='margin-top: 10px'>
+        <div class="header">
+            <span>
+                <span class="ico gray window title"></span>
+                Chi tiết hóa đơn
+            </span>
+        </div>
+        <div class="clear"></div>
+        <div class="content">
+            <form >
+                <div>
+                    <h3 style="margin-top: 10px">Thông tin hóa đơn</h3>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label>Mã hóa đơn: </label> {{bill.bill_code}}
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>Tên khách hàng: </label> {{bill.customer.name}}
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>Địa chỉ: </label> {{bill.customer.address}}
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>Ngày tạo: </label> {{bill.created}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label>Tổng thanh toán: </label> {{bill.price_total | number}}
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>Nợ gộp từ hóa đơn trước: </label> {{bill.old_debit | number}}
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>Nợ hóa đơn này: </label> {{bill.debit | number}}
+                                </div>
+                                <div class="col-lg-12" ng-if="bill.total_debit != 0">
+                                    <label>Tổng tiền nợ: </label> {{bill.total_debit | number}} - <a href="#total-debit-customer/{{bill.customer_id}}"> Chi tiết</a>
+                                </div>
+                                <div class="col-lg-12" ng-if="bill.total_debit == 0">
+                                    <label>Tổng tiền nợ: </label> 0
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding-top: 30px">
+                    <h3 style="margin-top: 10px">chi tiết hóa đơn</h3>
+                    <div style="margin-left: 30px">
+                        <table class="display">
+                            <thead>
+                            <tr>
+                                <th><div class="th_wrapp">stt</div></th>
+                                <th><div class="th_wrapp">tên sản phảm</div></th>
+                                <th><div class="th_wrapp">số lượng</div></th>
+                                <th><div class="th_wrapp">Giá Sản phẩm</div></th>
+                                <th><div class="th_wrapp">Quy cách</div></th>
+                                <th><div class="th_wrapp">thành tiền</div></th>
+                            </tr>
+                            </thead>
+                            <tbody class="list_product_buy_price">
+                                <tr class="product_buy_price" ng-repeat="item in bill.detail" id="tr_product_price_{{item.id}}">
+                                    <td class="small">{{item.stt}}</td>
+                                    <td class="small">{{item.product_name}}</td>
+                                    <td class="small">{{item.quantity}}</td>
+                                    <td class="small">{{item.price | number}}</td>
+                                    <td class="small">{{item.unit.name}}</td>
+                                    <td class="small">{{item.price * item.quantity | number}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" ng-if="bill.promotions.length() > 0 || true">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+                            <h3 style="margin-top: 10px">Danh sách khuyến mãi</h3>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <th>STT</th>
+                        <th>Tên Hàng</th>
+                        <th>ĐV Tính</th>
+                        <th>Số Lượng</th>
+                        <th>Giá trị</th>
+                        <th></th>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="(j, detail) in bill.promotions">
+                            <td scope="row">{{j + 1}}</td>
+                            <td>{{detail.name}}</td>
+                            <td>{{detail.unit_name}}</td>
+                            <td>{{detail.quantity|number}}</td>
+                            <td>{{detail.value|number}}</td>
+                        </tr>
+                        <tr ng-repeat-end></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class='section last'>
+                    <div>
+                        <input class="uibutton loading" ng-click="backToList()" title="quay lại" value="Quay lại"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

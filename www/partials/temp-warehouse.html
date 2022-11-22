@@ -1,0 +1,101 @@
+<div ng-app="dashboard" ng-controller="warehouseController">
+    <div class="onecolumn ware-house-list" style="margin-top: 10px">
+        <div class="header">
+            <span><span class="ico  gray random title"></span> Hiện trạng kho</span>
+            <div class="pull-right" style="padding: 10px 20px">Tổng giá trị: <strong>{{totalValue|number}}</strong></div>
+        </div><!-- End header -->
+        <div class=" clear"></div>
+        <ul class="nav nav-tabs">
+            <li ng-repeat="warehouse in lstWarehouse" id="warehouse{{warehouse.id}}"><a ng-click="changeWarehouse(warehouse.id)">{{warehouse.name}}</a></li>
+        </ul>
+        <div class="content">
+            <div class="section">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="iconBox color">
+                                <img src="/www/img/icon/zoom.png">
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" ng-model="filter_product" class="small"/>
+                        </td>
+                    </tr>
+                </table>
+                <div class="pull-right" style="padding: 10px 20px; margin-top: -55px;">Tổng giá trị kho đang xem: <strong>{{totalValueCurrentWarehouse|number}}</strong></div>
+            </div>
+            <form>
+                <div class="tableName">
+                    <table id="tabel_product_type" class="display inventory-table" style="text-align: left">
+                        <thead>
+                        <tr>
+                            <th>
+                                <div>ID</div>
+                            </th>
+                            <th>
+                                <div>Ngành hàng</div>
+                            </th>
+                            <th>
+                                <div>Tên sản phẩm</div>
+                            </th>
+                            <th>
+                                <div title="Hàng tồn kho, bao gồm cả hàng trả thưởng">Tồn kho</div>
+                            </th>
+                            <th>
+                                <div title="Hàng đã bán nhưng chưa giao hàng">Đã bán</div>
+                            </th>
+                            <th>
+                                <div title="Tồn kho danh nghĩa: tồn kho -  đã bán">TK-DN</div>
+                            </th>
+                            <th class="hidden">
+                                <div title="Tồn kho hàng trả thưởng">TK-TT</div>
+                            </th>
+                            <th class="hidden">
+                                <div title="Hàng trả thưởng đã lên hóa đơn nhưng chưa giao hàng">Đã bán-TT</div>
+                            </th>
+                            <th class="hidden">
+                                <div title="Tồn kho danh nghĩa của hàng trả thưởng: TK-TT - Đã bán-TT">TK-DN-TT
+                                </div>
+                            </th>
+                            <th>
+                                <div>Quy cách</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody ng-repeat="(key,item) in products | filter:filter_product">
+                        <tr class="gradeX">
+                            <td>{{item.product_id}}</td>
+                            <td>{{item.type}}</td>
+                            <td>{{item.name}}</td>
+                            <td>
+                                {{item.quantity|number}}{{item.odd}}
+                            </td>
+                            <td>{{item.sold|number}}</td>
+                            <td>{{item.quantity - item.sold|number}}</td>
+                            <td class="hidden">{{item.trathuong|number}}</td>
+                            <td class="hidden">{{item.banTraThuong|number}}</td>
+                            <td class="hidden">{{item.trathuong - item.banTraThuong|number}}</td>
+                            <td>{{item.unit_name}}</td>
+                        </tr>
+
+                        <tr class="odd gradeX hidden" ng-if="item.danhsachhangtrathuong.length > 0"
+                            ng-repeat="hangtrathuong in item.danhsachhangtrathuong">
+                            <td></td>
+                            <td>{{hangtrathuong.name}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input type="text" id="i{{hangtrathuong.product_id}}"
+                                       ng-change="editInvetory(item.id, hangtrathuong.id)" style="max-width: 100px"
+                                       ng-model="hangtrathuong.quantity"></td>
+                            <td>{{hangtrathuong.sold}}</td>
+                            <td>{{hangtrathuong.quantity - hangtrathuong.sold}}</td>
+                            <td>{{item.unit_name}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

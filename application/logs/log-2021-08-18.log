@@ -1,0 +1,11 @@
+CUSTOM - 2021-08-18 10:16:44 --> Order::index - /index.php/order: null
+CUSTOM - 2021-08-18 10:33:07 --> Order::index - /index.php/order: null
+CUSTOM - 2021-08-18 11:00:25 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"87","cost":null,"unit":"","price":170000,"quantity":1,"total":"87"},{"product_id":"1","cost":null,"unit":"","price":93500,"quantity":3,"total":"1"}],"total_price":450500,"customer_id":"1099","saler":"3"}
+CUSTOM - 2021-08-18 16:24:43 --> Order::index - /index.php/order: null
+CUSTOM - 2021-08-18 16:59:00 --> Order::index - /index.php/order: null
+CUSTOM - 2021-08-18 16:59:16 --> Order::index - /index.php/order: null
+CUSTOM - 2021-08-18 17:25:37 --> Order::addOrder - /index.php/order/addOrder: {"note":"\u0110\u01a0N N\u00c0Y KH\u00c1CH ANH TH\u00c0NH XU\u1ed0NG L\u1ea4Y NHA","lstProId":[],"orders":[{"product_id":"1","cost":null,"unit":"","price":93500,"quantity":250,"total":"1"},{"product_id":"14","cost":null,"unit":"","price":193000,"quantity":20,"total":"14"},{"product_id":"15","cost":null,"unit":"","price":193000,"quantity":130,"total":"15"}],"total_price":52325000,"customer_id":"1712","saler":"12"}
+CUSTOM - 2021-08-18 17:25:40 --> Order::index - /index.php/order: null
+CUSTOM - 2021-08-18 17:27:56 --> Order::addOrder - /index.php/order/addOrder: {"note":"KH\u00c1CH N\u00c0Y C\u1ee6A ANH V\u00c2N XU\u1ed0NG L\u1ea4Y NHA","lstProId":[],"orders":[{"product_id":"1","cost":null,"unit":"","price":93500,"quantity":40,"total":"1"}],"total_price":3740000,"customer_id":"1712","saler":"12"}
+CUSTOM - 2021-08-18 17:27:59 --> Order::index - /index.php/order: null
+CUSTOM - 2021-08-18 17:30:23 --> Order::index - /index.php/order: null

@@ -1,0 +1,79 @@
+<div ng-app="dashboard" ng-controller="saleCommission">
+    <div class="onecolumn">
+        <div class="header">
+            <span><span class="ico gray notepad title"></span>Danh sách Chiết khấu</span>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="content">
+        <div class="row" style="margin-top: 10px">
+            <div class="col-md-8 col-ms-12" style="padding-left: 0">
+                <div class="col-md-3 col-lg-3 col-ms-3 col-xs-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="from" placeholder="Từ ngày"
+                               ng-click="openFrom($event)" datepicker-popup="dd-MM-yyyy" ng-model="from_date"
+                               is-open="fromOpened" close-text="Close">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 col-ms-3 col-xs-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Đến ngày" name="to"
+                               ng-click="openTo($event)"
+                               datepicker-popup="dd-MM-yyyy" ng-model="to_date" is-open="toOpened" close-text="Close">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-2 col-ms-2 col-xs-2 ">
+                    <button class="btn btn-success" ng-click="loadData()">Lọc</button>
+                </div>
+                <input type="hidden" name="chiet-khau-si" ng-model="chietKhauSi">
+                <input type="hidden" name="chiet-khau-le" ng-model="chietKhauLe">
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="table table-bordered display">
+                <thead>
+                <tr>
+                    <th rowspan="3" style="vertical-align: top;">
+                        <div>Danh mục</div>
+                        <select class="form-control selectpicker" multiple="multiple" data-live-search="true"  ng-options="productType.id as productType.name for productType in listProductType" name="category" ng-model="category">
+                        </select>
+                        <div style="margin-top: 10px">
+                            <label><input type="checkbox" ng-model="includeEmptyRow" value="1" style="margin-right: 5px">Tất cả sản phẩm</label>
+                        </div>
+                    </th>
+                    <th>Tổng DT</th>
+                    <th colspan="2" ng-repeat="saler in salers">{{calcTotalRevenue( saler.id ) | number}}</th>
+                </tr>
+                <tr>
+                    <th>Tổng CK</th>
+                    <th colspan="2" ng-repeat="saler in salers">{{calcTotalSaleCommission( saler.id ) |number}}</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th colspan="2" ng-repeat="saler in salers">{{saler.name}}</th>
+                </tr>
+                <tr>
+                    <td>Ngành hàng</td>
+                    <td>Sản phảm</td>
+                    <td ng-repeat-start="saler in salers">Sỉ</td>
+                    <td ng-repeat-end>Lẻ</td>
+                </tr>
+                </thead>
+                <tbody ng-if="salesCommissions.length > 0">
+                <tr ng-repeat="product in salesCommissions | filter:filterCategory">
+                    <td>{{product.productTypeName}}</td>
+                    <td>{{product.name}}</td>
+                    <td ng-repeat-start="saler in salers">
+                        <a href="/index.php/dashboard#/statistic/sale-commission-detail/{{saler.id}}/{{getFromDate()}}/{{getToDate()}}/{{product.id}}/1" target="_blank" ng-if="product.commissions[saler.id] && product.commissions[saler.id].wholesale > 0">{{product.commissions[saler.id].wholesale}}</a>
+                    </td>
+                    <td ng-repeat-end>
+                        <a href="/index.php/dashboard#/statistic/sale-commission-detail/{{saler.id}}/{{getFromDate()}}/{{getToDate()}}/{{product.id}}/2" target="_blank" ng-if="product.commissions[saler.id] && product.commissions[saler.id].retail > 0">{{product.commissions[saler.id].retail}}</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

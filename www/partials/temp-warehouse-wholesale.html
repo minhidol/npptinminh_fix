@@ -1,0 +1,147 @@
+<div ng-app="dashboard" ng-controller="warehouseWholesaleController">
+    <div class="onecolumn" style='margin-top: 10px'>
+        <div class="header">
+            <span>
+                <span class="ico gray window title"></span>
+                Nhập hàng
+            </span>
+        </div>
+        <div class="clear"></div>
+        <div class="content">
+            <form>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class='section'>
+                            <label>chọn theo đối tác</label>
+                            <div style="width: 200px">
+                                <input type="hidden" id="type_sale_product" value="{{warehouse_type_en}}"/>
+                                <input type="text" ng-model="searchCustomer"/>
+                            </div>
+                        </div>
+                        <div class='section' ng-if="searchCustomer != ''">
+                            <table class="display">
+                                <thead>
+                                <th>STT</th>
+                                <th>Tên khách hàng</th>
+                                <th>Ngành hàng</th>
+                                <th>Địa chỉ</th>
+                                </thead>
+                                <tbody>
+                                <tr style="cursor: pointer" ng-click="selectCustomer()"
+                                    ng-repeat="(key,item) in customers|filter:searchCustomer">
+                                    <td>{{key + 1}}</td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.store_name}}</td>
+                                    <td>{{item.address}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row" style="padding-top: 30px; padding-bottom: 50px" ng-if="show_customer.length != 0">
+                            <div class="col-md-6">Tên đối tác: <strong>{{show_customer.name}}</strong></div>
+                            <div class="col-md-6">Ngành hàng: <strong>{{show_customer.store_name}}</strong></div>
+                            <div class="col-md-6">Địa chỉ: <strong>{{show_customer.address}}</strong></div>
+                            <div class="col-md-6">Di động: <strong>{{show_customer.phone_mobile[0]}}</strong></div>
+                            <div class="col-md-6">ĐT bàn: <strong>{{show_customer.phone_home[0]}}</strong></div>
+                            <div class="col-md-6" ng-if="show_customer.total_debt.debt != null && show_customer.total_debt.debt != 0">Tổng nợ: <strong>{{show_customer.total_debt.debt | number}}</strong> - <a href="#total-debit-customer/{{show_customer.id}}" target="_blank">xem chi tiết</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="select-wharehouse">Chọn Kho</label>
+                        <select class="form-control" data-live-search="true" id="select-wharehouse" ng-options="warehouse.id as warehouse.name for warehouse in listwarehouse" ng-change="chonkho()" ng-model="khohang">
+                            <option style="display:none" value="">-- Chọn kho --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='section'>
+                    <h3 style="margin-top: 10px">Danh sách sản phẩm</h3>
+                    <div style="margin-left: 0%">
+                        <table class="display">
+                            <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Đơn vị</th>
+                                <th>Giá mua</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody class="list_order_product">
+                            <tr class="product_order" ng-repeat="(i,product) in lstOrderProduct">
+                                <td>
+                                    <select ng-model="lstOrderProduct[$index].product"
+                                            class="form-control product selectpicker" data-live-search="true"
+                                            ng-options="item.id as item.name for item in danhSachSanPham"
+                                            ng-change="productChange(i)">
+                                        <option style="display:none" value="">-- Chọn sản phẩm --</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input ng-keyup="calculatorPrice()" type="text" class="form-control"
+                                           ng-model="lstOrderProduct[$index].quantity" number-input=""/>
+                                </td>
+                                <td>{{product.unitname}}</td>
+                                <td>
+                                    <input class="show_sale form-control" type="text"
+                                           ng-model="lstOrderProduct[$index].price" ng-change="calculatorPrice"
+                                           ng-keyup="calculatorPrice()" number-input=""/>
+                                    <input type="hidden" class="show_sale_origin"/>
+                                </td>
+                                <td>
+                                    <span id="sub-total-{{$index}}">{{lstOrderProduct[$index].price * lstOrderProduct[$index].quantity | number:0}}</span>
+                                    <input class="price_order form-control" type="hidden" id="txt_hide_1"
+                                           value="0"/>
+                                </td>
+                                <th scope="row" style="width: 51px" ng-click="deleteProduct($index)"><a
+                                        href="#">Xóa</a>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td>
+                                    <div class="iconBox color">
+                                        <a class="btn_more_order" data-id="1" ng-click="moreOrder()"
+                                           title="thêm giá">
+                                            <img alt="" src="/www/img/icon/directional_down.png">
+                                        </a>
+                                    </div>
+                                    Click hoặc ấn phím <strong>+</strong> để thêm sản phẩm
+                                </td>
+                                <td colspan="5" style="text-align: right">
+                                    <h4>
+                                        Tổng cộng: {{totalValue | number:0}}
+                                    </h4>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+
+                </div>
+                <div class='section last'>
+                    <div>
+                        <input class="uibutton loading" title="Saving" type="button"
+                               ng-click="addWhole();" ng-disabled="disabled" value="Tạo hóa đơn"/>
+                        Tình trạng:
+                        <b>Nợ &nbsp;</b>
+                        <input type="text" class="xsmall" readonly id="debt_warehouse"/>
+                        <input type="hidden" ng-model="wholesale.debt"/>
+                        <b>&nbsp; Thanh toán &nbsp;</b>
+                        <input type="text" class="xsmall" ng-keyup="checkBill()" id="actual_warehouse"/>
+                        <input type="hidden" ng-model="wholesale.actual"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).keydown(function(e) {
+        if ( e.key == '+' ) {
+            e.preventDefault();
+            $("a.btn_more_order").trigger("click");
+        }
+    });
+</script>

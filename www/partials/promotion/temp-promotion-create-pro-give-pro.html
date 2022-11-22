@@ -1,0 +1,27 @@
+<div ng-app="dashboard" class='promotion-pro-give-pro' ng-controller='promotionProductGiveProductController'>
+  <div class='promotion-give'>
+    <div>
+      <select data-placeholder="sản phẩm" class="chzn-select load_product" ng-model='proGive'></select>
+    </div>
+    <div>
+      <input type='text' ng-model='proGiveQuantity' placeholder="Số lượng"/>
+    </div>
+  </div>
+  <span class='arrow-between'>
+    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+  </span>
+  <div class='promotion-award'>
+    <div>
+      <select data-placeholder="sản phẩm" ng-model='proRev' ng-change='loadUnitProduct(this)' class="chzn-select load_product"></select>
+    </div>
+    <div>
+      <select data-placeholder="chọn quy cách" ng-model="select_unit" class="chzn-select">
+        <option ng-repeat="(key,item) in unitList">
+
+        </option>
+      </select>
+    </div>
+    <div><input type='text' placeholder="Số lượng"/></div>
+  </div>
+  <input class="uibutton loading" title="Saving" type="button" ng-click="createPromotion($event)" value="Tạo Khuyến mãi"/>
+</div>

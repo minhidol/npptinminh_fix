@@ -1,0 +1,148 @@
+<div ng-app="dashboard" ng-controller="createProductController">
+    <div class="onecolumn" style='margin-top: 10px'>
+        <div class="header">
+            <span>
+                <span class="ico gray window title"></span>
+                Thêm sản phẩm
+            </span>
+        </div>
+        <div class="clear"></div>
+        <div class="content">
+            <form ng-submit="createProduct($event)">
+                <div class='section'>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Tên sản phẩm</label>
+                            <div><input type="text" ng-model="product.name" required class="medium"/></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Hàng trả thưởng</label>
+                            <input ng-if="product.alias" class="form-control" id="cbHangtrathuong" type="checkbox" name="select{{order.id}}" style="border: none;background:transparent;" checked>
+                            <input ng-if="!product.alias" class="form-control" id="cbHangtrathuong" type="checkbox" name="select{{order.id}}" style="border: none;background:transparent;">
+                        </div>
+                    </div>
+                </div>
+                <div class='section'>
+                    <label>mô tả</label>
+                    <div><textarea class='editor' ng-model="product.description" cols="50" rows="5"></textarea></div>
+                </div>
+                <div class='section'>
+                    <label for="select-product-type">Ngành Hàng</label>
+                    <div style="width: 200px">
+                    <select id="select-product-type" ng-model="product_type" class="form-control selectpicker" data-live-search="true" ng-options="pt.id as pt.name for pt in lstProductType">
+                            <option value="" hidden="">Chọn ngành hàng</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="section">
+                    <label>giá bán</label>
+                    <div style="margin-left: 260px;">
+                        <table class="display">
+                            <thead>
+                                <tr>
+                                    <th>Đơn vị</th>
+                                    <th>Số lượng</th>
+                                    <th>Quy cách</th>
+                                    <th>Giá bán</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="list_product_price">
+                                <tr class="product_price" ng-repeat="(key,item) in product.sale_price" id="tr_product_price_{{key + 1}}">
+                                    <td class="small">{{item.parent_name}} <span ng-if="item.parent_name">=</span> </td>
+                                    <td class="small"><input type="text" class="form-control" value="{{item.quantity}}" ng-model="product.sale_price[$index].quantity"/></td>
+                                    <td class="small">
+                                        <div class="input-group">
+                                            <select class="form-control selectpicker sale-unit" data-live-search="true" id="unit-name-{{key+1}}" ng-model="product.sale_price[$index].unit">
+                                                <option value="" hidden="">Quy cách</option>
+                                                <option value="{{sp.id}}" ng-repeat="sp in lstUnit">{{sp.name}}</option>
+                                            </select>
+                                            <span class="input-group-addon clickable" ng-click="addUnit()"><strong>+</strong></span>
+                                        </div>
+                                    </td>
+                                    <td class="small"><input type="text" class="form-control" ng-keyup="formatNumber()" value="{{item.price|number}}" ng-model="product.sale_price[$index].price"/></td>
+                                    <td>
+                                        <div class="iconBox color" ng-if="key == 0">
+                                            <a id="btn_more_price" value="{{product.sale_price.length}}" ng-click="morePrice(product.sale_price.length)"  title="thêm giá">
+                                                <img src="/www/img/icon/directional_down.png">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class='section '>
+                    <div>
+                        <input class="uibutton loading"  title="Saving" type="submit" value="save"/>
+                        <a class="uibutton special" href="#product">cancel</a>
+                    </div>
+                </div>
+                <div class="section last" ng-if="product.buy_price.length > 0">
+                    <h5 style="font-weight: bold">giá mua</h5>
+                    <div style="margin-left: 30px; font-size: 13px">
+                        <table class="display">
+                            <thead>
+                            <tr>
+                                <th><div class="th_wrapp">Ngày Nhập</div></th>
+                                <th><div class="th_wrapp">Số lượng</div></th>
+                                <th><div class="th_wrapp">Số lượng còn lại</div></th>
+                                <th><div class="th_wrapp">Quy cách</div></th>
+                                <th><div class="th_wrapp">Kho</div></th>
+                                <th><div class="th_wrapp">Giá mua</div></th>
+                            </tr>
+                            </thead>
+                            <tbody class="list_product_buy_price">
+                            <tr class="product_buy_price" ng-repeat="item in product.buy_price" id="tr_product_price_{{item.id}}">
+                                <td class="small">{{item.created}}</td>
+                                <td class="small">{{item.quantity}}</td>
+                                <td class="small">{{item.remaining_quantity}}</td>
+                                <td class="small">{{item.unit}}</td>
+                                <td class="small">{{item.warehouse}}</td>
+                                <td class="small">{{item.price | number}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal add new unit -->
+    <div id="unitModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-success">
+                    <h4 class="modal-title" style="border: none;">Thêm Quy Cách</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                            <input type="text" name="new-unit" class="form-control" placeholder="Nhập quy cách mới">
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <div class="checkbox">
+                                <label hidden=""><input type="checkbox" value="" checked="" name="unit-prefix">Prefix tên</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <button class="btn btn-success" ng-click="SaveNewUnit()">Lưu</button>
+                        </div>
+                        <div class=" col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="alert alert-warning" id="warning" style="display: none; margin-top: 20px;margin-bottom: 0px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close-modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

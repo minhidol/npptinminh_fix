@@ -1,0 +1,124 @@
+<?php if ($user->role == ROLE_ADMIN) { ?>
+<ul id='main_menu' class='main_menu'>
+<!--   <li class='limenu'><a href='#'><span class='ico gray home'></span><b>Quản lý kho lẻ</b></a>
+    <ul>
+      <li><a href='#warehouse-invoice/reatail'>Nhập kho</a></li>
+      <li><a href='#warehouse/retail'>Hiện trạng kho</a></li>
+      <li><a href='#warehouse-sale/retail'>Bán hàng</a></li>
+    </ul>
+  </li> -->
+
+  <li class='limenu'><a href='#'><span class='ico gray cabinet'></span><b>Quản lý kho sỉ</b></a>
+    <ul>
+      <li><a href='#warehouse-invoice/wholesale'>Nhập kho</a></li>
+      <!-- <li><a href='#stock-transfer'>Chuyển kho</a></li> -->
+      <li><a href='#warehouse/wholesale'>Hiện trạng kho</a></li>
+      <li><a href='#warehouse-sale/wholesale'>Bán hàng</a></li>
+    </ul>
+  </li>
+
+  <li class='limenu'><a href='#'><span class='ico gray shopping_basket'></span><b>Quản lý sản phẩm</b></a>
+    <ul>
+      <li><a href='#create-product'>Thêm sản phẩm</a></li>
+      <li><a href='#product'>Sản phẩm</a></li>
+      <li><a href='#product-type'>Loại sản phẩm</a></li>
+      <li><a href='#product-unit'>Quy cách sản phẩm</a></li>
+
+    </ul>
+  </li>
+
+  <li class='limenu'><a href='#bill/wholesale'><span class='ico gray shadow window'></span><b>Quản lý hóa đơn</b></a>
+    <!--<ul>-->
+      <!--<li><a href='#bill/retail'>Hóa đơn bán lẻ</a></li>-->
+      <!--<li><a href='#bill/wholesale'>Hóa đơn bán sỉ</a></li>-->
+    <!--</ul>-->
+  </li>
+
+  <li class='limenu'><a href='#'><span class='ico gray shadow file'></span><b>Quản lý Kho</b></a>
+    <ul>
+<!--      <li><a href='#warehouses-transfer'>Xuất kho</a></li>-->
+      <li><a href='#warehouse-list'>Danh sách kho</a></li>
+      <li><a href='#warehouse/wholesale'>Hiện trạng kho</a></li>
+      <!--<li><a href='#warehouse-outofstorge'>Sản phẩm hết hàng</a></li>-->
+<!--      <li><a href='#warehousing-history'>Lịch sử nhập kho</a></li>-->
+      <li><a href='#warehouses-export'>Lịch sử xuất-nhập-tồn</a></li>
+        <li><a href='#retail'>Thanh lý hàng lẻ</a></li>
+    </ul>
+  </li>
+
+  <li class='limenu'><a href='#total-debit'><span class='ico gray shadow file'></span><b>Quản lý Nợ</b></a>
+<!--    <ul>-->
+<!--      <li><a href='#total-liability'>Tổng nợ</a></li>-->
+<!--      <li><a href='#total-debit'>Tổng bị nợ</a></li>-->
+<!--    </ul>-->
+  </li>
+
+  <li class='limenu'><a href='#'><span class='ico gray shadow abacus'></span><b>Danh bạ</b></a>
+    <ul>
+      <li><a href='#customers/customer'>Khách hàng</a></li>
+      <li><a href='#customers/partner'>Đối tác</a></li>
+    </ul>
+  </li>
+
+  <li class='limenu'><a href='#'><span class='ico gray shadow spreadsheet'></span><b>Đơn hàng</b></a>
+    <ul>
+      <li><a href='#order-create'>Tạo đơn hàng</a></li>
+      <li><a href='#order-management'>Quản lý sắp tuyến</a></li>
+      <li><a href='#order-status'>Hiện trạng đơn hàng</a></li>
+      <li><a href='#order-list'>Quản lý đơn hàng</a></li>
+    </ul>
+  </li>
+
+  <li class='limenu'><a href='#'><span class='ico gray shadow location'></span><b>Xe và nhân viên</b></a>
+    <ul>
+      <li><a href='#trucks'>Quản lý xe</a></li>
+      <li><a href='#staff'>Quản lý nhân viên</a></li>
+      <li><a href='#users'>Quản lý tài khoản</a></li>
+    </ul>
+  </li>
+
+  <li class='limenu'><a href='#shipment'><span class='ico gray shadow spreadsheet'></span><b>Quản lý chuyến xe</b></a></li>
+
+  <li class='limenu'><a href='#'><span class='ico gray shadow window'></span><b>Quản lý Khuyến Mãi</b></a>
+    <ul>
+      <li><a href='#promotion-board'>Danh sách</a></li>
+      <li><a href='#promotion-create'>Tạo khuyến mãi</a></li>
+    </ul>
+  </li>
+    <li class='limenu'><a href='#statistic/sales'><span class='ico gray shadow stats_lines'></span><b>Thống kê doanh số</b></a></li>
+    <li class='limenu'><a href='#sales-commission'><span class='ico gray shadow list'></span><b>Chiết khấu sale</b></a></li>
+</ul>
+<?php } else { ?>
+<ul id='main_menu' class='main_menu'>
+    <li class='limenu'><a href='#'><span class='ico gray cabinet'></span><b>Quản lý kho sỉ</b></a>
+        <ul>
+            <li><a href='#warehouse-invoice/wholesale'>Nhập kho</a></li>
+            <li><a href='#warehouse/wholesale'>Hiện trạng kho</a></li>
+            <li><a href='#warehouse-sale/wholesale'>Bán hàng</a></li>
+        </ul>
+    </li>
+
+    <li class='limenu'><a href='#'><span class='ico gray shopping_basket'></span><b>Quản lý sản phẩm</b></a>
+        <ul>
+            <li><a href='#create-product'>Thêm sản phẩm</a></li>
+            <li><a href='#product'>Sản phẩm</a></li>
+            <li><a href='#product-type'>Loại sản phẩm</a></li>
+            <li><a href='#product-unit'>Quy cách sản phẩm</a></li>
+
+        </ul>
+    </li>
+
+    <li class='limenu'><a href='#customers/customer'><span class='ico gray shadow abacus'></span><b>Khách hàng</b></a></li>
+
+    <li class='limenu'><a href='#order-create'><span class='ico gray shadow spreadsheet'></span><b>Tạo đơn hàng</b></a></li>
+
+    <li class='limenu'><a href='#'><span class='ico gray shadow location'></span><b>Xe và nhân viên</b></a>
+        <ul>
+            <li><a href='#trucks'>Quản lý xe</a></li>
+            <li><a href='#staff'>Quản lý nhân viên</a></li>
+        </ul>
+    </li>
+
+    <li class='limenu'><a href='#shipment'><span class='ico gray shadow spreadsheet'></span><b>Quản lý chuyến xe</b></a></li>
+</ul>
+<?php } ?>

@@ -1,0 +1,208 @@
+<div ng-app="dashboard" ng-controller="promotionCreateController">
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span><span class="ico  gray random title"></span>Tạo khuyến mãi</span>
+        </div>
+        <!-- End header -->
+        <div class=" clear"></div>
+        <div class="content">
+            <form name="metaForm">
+                <div class="row pb25">
+
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Khuyến mãi</span>
+                            <input type="text" class="form-control" name="tenKhuyenMai" placeholder="Nhập tên chương trình khuyến mãi" ng-model="tenKhuyenMai" required="">
+                        </div>
+                        <span style="color: red" ng-show="(isSubmit && (tenKhuyenMai == null || tenKhuyenMai == '')) || (metaForm.tenKhuyenMai.$dirty && metaForm.tenKhuyenMai.$invalid)">Dữ liệu bắt buộc.</span>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <label class="col-md-2 col-lg-2 col-ms-2 col-xs-2 text-right">Áp dụng</label>
+                            <div class="col-md-5 col-lg-5 col-ms-5 col-xs-5">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="kmTn" ng-model="kmTn" placeholder="Từ ngày" ng-click="openFrom($event)" datepicker-popup="dd-MM-yyyy" ng-model="from_date" is-open="fromOpened" close-text="Close" required>
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                <span style="color: red" ng-show="(isSubmit && (kmTn == null || kmTn == '')) || (metaForm.kmTn.$dirty && metaForm.kmTn.$invalid)">Dữ liệu bắt buộc.</span>
+                            </div>
+                            <div class="col-md-5 col-lg-5 col-ms-5 col-xs-5">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Đến ngày" ng-model="kmDn" name="kmDn" ng-click="openTo($event)" datepicker-popup="dd-MM-yyyy" ng-model="to_date" is-open="toOpened" close-text="Close">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                <span style="color: red" ng-show="(isSubmit && (kmDn == null || kmDn == '')) || (metaForm.kmDn.$dirty && metaForm.kmDn.$invalid)">Dữ liệu bắt buộc.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-ms-12 col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Điều kiện áp dụng</div>
+                                    <div class="panel-body">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="success col-md-4 col-lg-4 col-sm-4 col-xs-4 middle-vert">Sản phẩm</td>
+                                                    <td class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                                                        <select ng-model="kmDkSp" class="form-control selectpicker" data-live-search="true" ng-change="DieukienSanphamChange()" ng-disabled="haveValueCondition">
+                                                            <option selected value="" hidden="">Chọn sản phẩm</option>
+                                                            <option ng-repeat="sp in danhSachSanPham" value="{{sp}}">{{sp.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                                                        <input type="text" ng-model="kmDkSlSp" class="form-control" ng-change="DieukienSanphamChange()" ng-disabled="haveValueCondition" placeholder="Số lượng">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="success middle-vert">Giá trị đơn hàng</td>
+                                                    <td colspan="2">
+                                                        <div class="input-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <input type="text" ng-model="kmDkGtDh" class="form-control" placeholder="Nhập giá trị đơn hàng" ng-change="DieuKienGiaTriChange()" ng-disabled="haveProductCondition">
+                                                            <span class="input-group-addon">vnđ</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-12 col-ms-12 col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Ưu đãi</div>
+                                    <div class="panel-body">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="warning col-md-3 col-lg-3 col-sm-3 col-xs-3 middle-vert">Tặng sản phẩm</td>
+                                                    <td class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                                                        <select ng-model="udQtSp" class="form-control selectpicker" data-live-search="true" ng-disabled="disableQuatangSanpham" ng-change="changeQuaTangSanPham()">
+                                                            <option selected value="" hidden="">Chọn sản phẩm</option>
+                                                            <option ng-repeat="sp in danhSachSanPhamPrim" value="{{sp}}">{{sp.name}}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                                                        <input type="text" ng-model="udQtSlSp" class="form-control" placeholder="Số lượng" ng-disabled="disableQuatangSanpham" ng-change="changeQuaTangSanPham()">
+                                                    </td>
+                                                    <td class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                                                    <div class="input-group">
+                                                        <select ng-model="udQtDvt" class="form-control selectpicker" data-live-search="true" ng-disabled="disableQuatangSanpham" id="udQtDvt-id" ng-change="changeQuaTangSanPham()">
+                                                            <option selected value="" hidden="">Chọn đơn vị tính</option>
+                                                            <option ng-repeat="dv in danhSachDonVi" value="{{dv}}">{{dv.name}}</option>
+                                                        </select>
+                                                        <span class="input-group-addon clickable" ng-click="addUnit()"><strong>+</strong></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="warning col-md-3 col-lg-3 col-sm-3 col-xs-3 middle-vert">Chiết khấu tiền</td>
+                                                    <td colspan="2">
+                                                        <div class="input-group  col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <input type="text" ng-model="udCkT" class="form-control" placeholder="Nhập giá trị chiết khấu" ng-disabled="disableDiscountMoney"  ng-change="changeChietKhauTien()">
+                                                            <span class="input-group-addon">vnđ</span>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="warning col-md-3 col-lg-3 col-sm-3 col-xs-3 middle-vert">Chiết khấu %</td>
+                                                    <td colspan="2">
+                                                        <div class="input-group  col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                                            <input type="text" ng-model="udCkPt" class="form-control" placeholder="Nhập giá trị chiết khấu" ng-disabled="disableDiscountPercent"  ng-change="changeChietKhauPhanTram()">
+                                                            <span class="input-group-addon">%</span>
+                                                        </div>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="warning col-md-3 col-lg-3 col-sm-3 col-xs-3 middle-vert">Quà tặng khác</td>
+                                                    <td colspan="3">
+                                                        <input type="text" ng-model="udQtK" class="form-control form-control-pading" placeholder="Nhập quà tặng" ng-disabled="disableOtherGift" ng-change="changeQuaTangKhac()">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-ms-4 col-ms-offset-4 col-xs-4 col-xs-offset-4">
+                                <input type="button" name="themKhuyenMai" class="form-control btn-primary" ng-click="themKhuyenMai()" value="Thêm khuyến mãi">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Chi tiết khuyến mãi - <strong>{{tenKhuyenMai}}</strong></div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                        <th>Doanh thu</th>
+                                        <th>Chiết khấu</th>
+                                        <th>Tặng</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="km in addedKhuyenMai">
+                                            <td>{{km.dk.sanPham.name}}</td>
+                                            <td>{{km.dk.sanPham.soLuong | number}}</td>
+                                            <td>{{km.dk.doanhThu.value | number}}</td>
+                                            <td>{{km.ud.chietKhau.value | number}}</td>
+                                            <td>{{km.ud.tang.display}}</td>
+                                            <td><button class="btn btn-error" ng-click="deletePro($index)">Xóa</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-ms-4 col-ms-offset-4 col-xs-4 col-xs-offset-4">
+                            <input class="form-control btn-success" name="Save" title="Lưu" type="button" ng-click="savePromotion()" value="Lưu Khuyến mãi"/>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal add new unit -->
+    <div id="unitModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-success">
+                    <h4 class="modal-title" style="border: none;">Thêm Quy Cách</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                            <input type="text" name="new-unit" class="form-control" placeholder="Nhập quy cách mới">
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <div class="checkbox">
+                                <label hidden=""><input type="checkbox" value="" checked="" name="unit-prefix">Prefix tên</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <button class="btn btn-success" ng-click="SaveNewUnit()">Lưu</button>
+                        </div>
+                        <div class=" col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="alert alert-warning" id="warning" style="display: none; margin-top: 20px;margin-bottom: 0px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close-modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

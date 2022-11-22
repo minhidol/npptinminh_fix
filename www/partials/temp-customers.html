@@ -1,0 +1,186 @@
+<div ng-app="dashboard" ng-controller="customersController">
+    <div style="color:red;font-size: 20px;padding-top: 50px" ng-if="permissionDenied">Bạn không có quyền truy cập trang
+        này!
+    </div>
+    <div ng-if="!permissionDenied">
+        <script type="text/ng-template" id="create_customer">
+            <div class="modal-header">
+                <h3 class="modal-title">Thêm {{customer_name}}</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class='section'>
+                        <label ng-switch='customer.type'>
+                            <span ng-switch-when='customer'>Khách hàng</span>
+                            <span ng-switch-when='partner'>Đối tác</span>
+                        </label>
+                        <div><input type='text' ng-model='customer.name'/></div>
+                    </div>
+                    <div class='section'>
+                        <label ng-switch='customer.type'>
+                            <span ng-switch-when='customer'>Tên cửa hàng</span>
+                            <span ng-switch-when='partner'>Ngành hàng</span>
+                        </label>
+
+                        <div><input type='text' ng-model='customer.store_name'/></div>
+                    </div>
+                    <div class='section'>
+                        <label>Địa chỉ</label>
+                        <div><input type='text' ng-model='customer.address'/></div>
+                    </div>
+                    <div class='section'>
+                        <label>Địa chỉ ngắn</label>
+                        <div><input type='text' ng-model='customer.short_address'/></div>
+                    </div>
+                    <div class='section'>
+                        <label>Điện thoại bàn</label>
+                        <div>
+                            <table ng-if="customer.phone_home.length != 0 && customer.phone_home"
+                                   data-class="list_phone_home" class="list_phone_home">
+                                <tr ng-repeat="(key,item) in customer.phone_home">
+                                    <td><input type='text' value="{{item}}" class="phone_home"/></td>
+                                    <td ng-if='key == 0'>
+                                        <div class="iconBox color">
+                                            <a ng-click="morePhone($event)" title="Thêm số điện thoại">
+                                                <img src="/www/img/icon/directional_down.png">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table ng-if="customer.phone_home.length == 0 || !customer.phone_home"
+                                   data-class="list_phone_home" class="list_phone_home">
+                                <tr>
+                                    <td><input type='text' class="phone_home"/></td>
+                                    <td>
+                                        <div class="iconBox color">
+                                            <a ng-click="morePhone($event)" title="Thêm số điện thoại">
+                                                <img src="/www/img/icon/directional_down.png">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class='section'>
+                        <label>Điện thoại di động</label>
+                        <div>
+                            <table ng-if="customer.phone_mobile != 0 && customer.phone_mobile"
+                                   data-class="list_phone_mobile" class="list_phone_mobile">
+                                <tr ng-repeat="(key, item) in customer.phone_mobile">
+                                    <td><input type='text' value="{{item}}" class="phone_mobile"/></td>
+                                    <td ng-if='key == 0'>
+                                        <div class="iconBox color">
+                                            <a ng-click="morePhone($event)" title="Thêm điện thoại">
+                                                <img src="/www/img/icon/directional_down.png">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table ng-if="customer.phone_mobile == 0 || !customer.phone_mobile"
+                                   data-class="list_phone_mobile" class="list_phone_mobile">
+                                <tr>
+                                    <td><input type='text' class="phone_mobile"/></td>
+                                    <td>
+                                        <div class="iconBox color">
+                                            <a ng-click="morePhone($event)" title="Thêm điện thoại">
+                                                <img src="/www/img/icon/directional_down.png">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="uibutton " ng-click='ok()'>Lưu</a>
+                <a class="uibutton special" ng-click='cancel()'>Hủy</a>
+            </div>
+        </script>
+        <div class="onecolumn" style="margin-top: 10px">
+            <div class="header">
+                <span><span class="ico  gray random title"></span> Danh sách {{customer_name}}</span>
+            </div>
+            <!-- End header -->
+            <div class=" clear"></div>
+            <div class="content">
+                <div class="section">
+                    <table>
+                        <tr>
+                            <td>
+                                <a class="uibutton icon confirm add" ng-click="openPopup()">Thêm {{customer_name}}</a>
+                            </td>
+                            <td>
+                                <div class="iconBox color">
+                                    <img src="/www/img/icon/zoom.png">
+                                </div>
+                            </td>
+                            <td>
+                                <input type="text" ng-model="searchCustomer" class="small"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <form>
+                    <div class="tableName">
+                        <table id="tabel_product_type" class="display">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <div class="th_wrapp">Stt</div>
+                                </th>
+                                <th>
+                                    <div class="th_wrapp">{{customer_name}}</div>
+                                </th>
+                                <th>
+                                    <div class="th_wrapp">{{type_customer}}</div>
+                                </th>
+                                <th>
+                                    <div class="th_wrapp">Địa chỉ</div>
+                                </th>
+                                <th>
+                                    <div class="th_wrapp">ĐT nhà</div>
+                                </th>
+                                <th>
+                                    <div class="th_wrapp">Di động</div>
+                                </th>
+                                <th ng-if="isAdminRole()">
+                                    <div class="th_wrapp">Edit</div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="(key,item) in customers | filter:searchCustomer" class="odd gradeX">
+                                <td>{{key + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.store_name}}</td>
+                                <td>{{item.address}}</td>
+                                <td>{{item.phone_home[0]}}</td>
+                                <td>{{item.phone_mobile[0]}}</td>
+                                <td ng-if="isAdminRole()">
+                  <span>
+                    <span class="tip">
+                      <a ng-click="openPopup(null,$event)" data-id="{{item.id}}" title="Edit">
+                        <img src="/www/img/icon/icon_edit.png">
+                      </a>
+                    </span>
+                    <span class="tip">
+                      <a id="{{item.id}}" ng-click="deleteCustomer($event)" class="Delete" title="Delete">
+                        <img src="/www/img/icon/icon_delete.png">
+                      </a>
+                    </span>
+                  </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

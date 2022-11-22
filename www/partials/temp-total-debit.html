@@ -1,0 +1,76 @@
+<div ng-app="dashboard" ng-controller="totalDebitController">
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span ><span class="ico  gray random title"></span> Danh sách nợ</span>
+        </div><!-- End header -->	
+        <div class=" clear"></div>
+        <div class="content">
+            <div class="section">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="iconBox color">
+                                <img src="/www/img/icon/zoom.png">
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" ng-model="searchBill" class="small"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <form> 
+                <div class="tableName">
+                    <table class="display" id="tabel_product">
+                        <thead>
+                            <tr>
+                                <th><div class="th_wrapp">Stt</div></th>
+                                <th><div class="th_wrapp">Khách hàng</div></th>
+                                <th><div class="th_wrapp">Địa chỉ</div></th>
+                                <th><div class="th_wrapp">Khách nợ</div></th>
+                                <th>Tín nợ</th>
+                                <th><div class="th_wrapp">Chi tiết khách nợ</div></th>
+                                <th>Chi tiết Tín nợ</th>
+                                <th>Tổng</th>
+                                <th><div class="th_wrapp">Thanh toán</div></th>
+                            </tr>
+                        </thead>
+                        <tbody id="show_product">
+                            <tr ng-repeat="(key,item) in debits | filter:searchBill" class="odd gradeX" data-id="{{item.id}}">
+                                <td>{{key + 1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.address}}</td>
+                                <td>{{item.tongLayHang | number}}</td>
+                                <td>{{-item.tongTinNo | number}}</td>
+                                <td>
+                                    <span class="tip" ng-if="item.tongLayHang > 0">
+                                            <a href="#total-debit-customer/{{item.id}}" title="Chi tiết" target="_blank">
+                                                Xem
+                                            </a>
+                                        </span>
+                                </td>
+                                <td>
+                                    <span class="tip" ng-if="item.tongTinNo > 0">
+                                            <a href="#total-liability-detail/{{item.id}}" title="Chi tiết" target="_blank">
+                                               Xem
+                                            </a>
+                                        </span>
+                                </td>
+                                <td>
+                                    <span ng-if="item.tongLayHang - item.tongTinNo > 0">Khách trả: {{item.tongLayHang - item.tongTinNo | number}}</span>
+                                    <span ng-if="item.tongLayHang - item.tongTinNo < 0">Tín trả: {{item.tongTinNo - item.tongLayHang | number}}</span>
+                                    <span ng-if="item.tongLayHang == item.tongTinNo">Cấn trừ nợ</span>
+                                </td>
+                                <th>
+                                    <button ng-click="pay(item.id)" class="btn btn-success">Xử lý</button>
+                                    <a href="#debit/print/{{item.id}}" target="_blank" class="btn btn-primary">In</a>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

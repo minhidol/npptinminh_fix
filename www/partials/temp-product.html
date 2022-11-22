@@ -1,0 +1,84 @@
+<div ng-app="dashboard" ng-controller="productController">
+  <div class="onecolumn" style="margin-top: 10px">
+    <div class="header">
+      <span><span class="ico  gray random title"></span> Danh sách sản phẩm </span>
+    </div>
+    <!-- End header -->
+    <div class=" clear"></div>
+    <div class="content">
+      <div class="section">
+        <table>
+          <tr>
+            <td>
+              <div class="iconBox color">
+                <img src="/www/img/icon/binoculars.png">
+              </div>
+            </td>
+            <td style="width: 180px">
+              <select id="filter_product_type" ng-model="filter_product.product_type_name" data-placeholder="chọn loại sản phẩm" class="chzn-select"></select>
+            </td>
+            <td>
+              <div class="iconBox color">
+                <img src="/www/img/icon/zoom.png">
+              </div>
+            </td>
+            <td>
+              <input type="text" ng-model="filter_product" class="small" />
+            </td>
+          </tr>
+        </table>
+      </div>
+      <form>
+        <div class="tableName">
+          <table class="display" id="tabel_product">
+            <thead>
+              <tr>
+                <th>
+                  <div class="th_wrapp">STT</div>
+                </th>
+                <th>
+                  <div style="cursor: pointer;" class="th_wrapp" ng-click="predicate = 'name'; reverse=!reverse">Tên sản phẩm</div>
+                </th>
+                <th>
+                  <div style="cursor: pointer;" class="th_wrapp" ng-click="predicate = 'product_type_name'; reverse=!reverse">Ngành hàng</div>
+                </th>
+                <th>
+                  <div class="th_wrapp">Giá bán</div>
+                </th>
+                <th>
+                  <div class="th_wrapp">Giá Mua</div>
+                </th>
+                <th>
+                  <div class="th_wrapp">Edit</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="show_product">
+              <tr ng-repeat="(key,item) in products | filter:filter_product" class="odd gradeX" data-id="{{item.id}}">
+                <td>{{key + 1}}</td>
+                <td align='left'>{{item.name}}</td>
+                <td>{{item.product_type_name}}</td>
+                <td>{{item.sale_price[0].price | number}}</td>
+                <td>{{item.buy_price.price | number}}</td>
+                <td>
+                  <span id="edit_btn_{{item.id}}">
+                    <span class="tip">
+                      <a href="#edit-product/{{item.id}}" title="Edit">
+                        <img src="/www/img/icon/icon_edit.png">
+                      </a>
+                    </span>
+                    <span class="tip">
+                      <a id="{{item.id}}" class="Delete" ng-click="deleteProduct($event)" title="Delete">
+                        <img src="/www/img/icon/icon_delete.png">
+                      </a>
+                    </span>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

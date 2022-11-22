@@ -1,0 +1,276 @@
+<div ng-app="dashboard" ng-controller="billController">
+        <div class="row" style="margin-top: 10px">
+            <div class="col-md-8 col-ms-12" style="padding-left: 0">
+                <div class="col-md-3 col-lg-3 col-ms-3 col-xs-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="from" placeholder="Từ ngày"
+                               ng-click="openFrom($event)" datepicker-popup="dd-MM-yyyy" ng-model="from_date"
+                               is-open="fromOpened" close-text="Close">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3 col-ms-3 col-xs-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Đến ngày" name="to"
+                               ng-click="openTo($event)"
+                               datepicker-popup="dd-MM-yyyy" ng-model="to_date" is-open="toOpened" close-text="Close">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-ms-4 col-xs-4">
+                    <input type="text" ng-model="search" class="form-control" placeholder="Khách hàng">
+                </div>
+                <div class="col-md-2 col-lg-2 col-ms-2 col-xs-2 "><button class="btn btn-success" ng-click="getData()">Search</button></div>
+            </div>
+        </div>
+    <div class="column_left" style="margin-top: 10px; width: 20%">
+        <div class="onecolumn">
+            <div class="header">
+                <span><span class="ico gray notepad"></span>Chuyến xe</span>
+            </div>
+            <br class="clear"/>
+            <div class="content" style="height: 700px;overflow-y: scroll;">
+                <div ng-if="metadata.length <= 0">Không có dữ liệu trong thời gian được chọn.</div>
+                <div class="row" ng-repeat="(i1, yeardata) in metadata" style="margin-right: 0px">
+                    <div class="col-lg-12" style="padding-right: 0">
+                        <button class="btn btn-default" style="width: 100%;text-align: left;"
+                                ng-click="selectYear(yeardata.display)">{{yeardata.display}}
+                        </button>
+                    </div>
+                    <div class="row" ng-repeat="(monthkey, monthdata) in yeardata.detail" ng-if="yeardata.show">
+                        <div class="col-lg-11 col-lg-offset-1">
+                            <button class="btn btn-default" style="width: 100%;text-align: left"
+                                    ng-click="selectMonth(yeardata.display, monthdata.display)"> Tháng
+                                {{monthdata.display}}
+                            </button>
+                        </div>
+                        <div class="row" ng-repeat="(datekey, datedata) in monthdata.detail" ng-if="monthdata.show"
+                             style="margin-right: 0px">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button class="btn btn-default" style="width: 100%;text-align: left"
+                                        ng-click="selectDate(yeardata.display, monthdata.display, datedata.display)">
+                                    Ngày {{datedata.display}}
+                                </button>
+                            </div>
+                            <div class="row" ng-repeat="(xekey, xedata) in datedata.detail" ng-if="datedata.show"
+                                 style="margin-right: 0px">
+                                <div class="col-lg-9 col-lg-offset-3">
+                                    <button class="btn btn-default" style="width: 100%;text-align: left"
+                                            ng-click="selectTruck(yeardata.display, monthdata.display, datedata.display, xedata.display)">
+                                        Xe {{xedata.display}}
+                                    </button>
+                                </div>
+                                <div class="col-lg-8 col-lg-offset-4"
+                                     ng-repeat="(chuyenkey, chuyendata) in xedata.detail" ng-if="xedata.show">
+                                    <button class="btn btn-default" style="width: 100%;text-align: left"
+                                            ng-click="selectChuyen(chuyendata.id)">
+                                        {{chuyendata.display}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column_right" style="margin-top: 10px; width: 80%">
+        <div class="onecolumn">
+            <div class="header">
+                <span><span class="ico gray notepad title"></span>Danh sách hóa đơn</span>
+            </div>
+        </div>
+        <br class="clear"/>
+        <div class="content" ng-if="orderList.length > 0">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 pt20">
+                    <div class=" input-group">
+                        <span class="input-group-addon">Ngày</span>
+                        <input type="text" class="form-control" readonly value="{{shipment.date | date : 'yyyy-MM-d'}} - Chuyến {{shipment.info.index}}">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 pt20">
+                    <div class=" input-group">
+                        <span class="input-group-addon">Xe</span>
+                        <input type="text" readonly value="{{shipment.truck_name}}" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 pt20">
+                    <div class=" input-group">
+                        <span class="input-group-addon">Tài xế</span>
+                        <input type="text" readonly value="{{shipment.driver}}" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 pt20">
+                    <div class=" input-group">
+                        <span class="input-group-addon">Lơ xe</span>
+                        <input type="text" readonly value="{{shipment.sub_driver}}" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="table table-bordered display" id='data-table'>
+                    <thead>
+                    <tr>
+                        <th colspan="2" class="first-col" style="text-align: center;">Khách hàng</th>
+                        <th ng-repeat="product in productList.detail">{{product.product_name}}</th>
+                        <th style="text-align: center;">Tổng số lượng ban đầu</th>
+                        <th style="text-align: center;">Trả về</th>
+                        <th style="text-align: center;">Tổng tiền ban đầu</th>
+                        <th style="text-align: center;">Tổng tiền thực nhận</th>
+                        <th style="text-align: center;">Ghi chú</th>
+                        <th>Lệch:</th>
+                        <th>{{moneyDiff}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="(index, order) in orderList" ng-click="openBillDetail(order.id)">
+                        <td>{{order.customer_detail.address}}</td>
+                        <td style="padding: 15px 5px !important;">{{order.totalQuantity}}
+                            <span class="ico color zoom show-popover" style="float: right; margin-right: 0" ng-click="showPopover($event.currentTarget); $event.stopPropagation();" data-orderid="{{order.id}}"></span>
+                        </td>
+                        <td ng-repeat="product in productList.detail">
+                            <span ng-if="getIndexOfProduct(order, product.product_id) === undefined"></span>
+                            <span ng-if="getIndexOfProduct(order, product.product_id) !== undefined">{{order.bill_detail[getIndexOfProduct(order, product.product_id)].quantity}}</span>
+                        </td>
+                        <td>{{order.totalOriginalQuantity | number}}</td>
+                        <td data-toggle="tooltip" data-placement="top" title="{{order.returnedDetail}}">{{order.totalReturned | number}}</td>
+                        <td>{{order.totalOriginalPrice | number}}</td>
+                        <td>{{order.price_total | number}}</td>
+                        <td>{{order.note}}</td>
+                        <td>
+                            <span ng-if="index < shipmentMoneyDetail.length">{{shipmentMoneyDetail[index].money_value}}</span>
+                        </td>
+                        <td>
+                            <span ng-if="index < shipmentMoneyDetail.length">{{shipmentMoneyDetail[index].quantity}}</span>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="(totienIndex, cash) in shipmentMoneyDetail" ng-if="totienIndex >= orderList.length">
+                        <td>--</td>
+                        <td>--</td>
+                        <td ng-repeat="product in productList.detail"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            {{cash.money_value}}
+                        </td>
+                        <td>
+                            {{cash.quantity}}
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th class="first-col" style="text-align: right;padding-right: 65px !important;"><strong>Tổng cộng:</strong></th>
+                        <th class="third-col">{{productList.summary.total_quantity}}</th>
+                        <th ng-repeat="product in productList.detail">
+                            {{product.total_quantity}} <span ng-if="product.promotion">(+{{product.promotion.quantity}} {{product.promotion.unit}})</span>
+                        </th>
+                        <th>{{productList.summary.totalOriginalQuantity | number}}</th>
+                        <th>{{productList.summary.totalReturn | number}}</th>
+                        <th>{{productList.summary.totalOriginalValue | number}}</th>
+                        <th>{{productList.summary.totalValue | number}}</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="section last">
+                <div class="right" style="text-align: center">
+                    <div style="float:left;margin-left: 5%;">Số thùng chuẩn: <strong>{{totalStandardBox}}</strong></div><br>
+                    <div style="float:left;margin-left: 5%;">Số thùng chuẩn ban đầu: <strong>{{totalOriginalBox}}</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    #data-table .column_right .content{margin-top: 20px}
+    #data-table .column_right .content > .row{
+        margin-bottom: 10px;
+    }
+    #data-table .column_right .content > .row div:last-child{
+        right: 0;
+    }
+    #data-table tbody tr {
+        cursor: pointer;
+    }
+</style>
+
+<style type="text/css">
+    th, td {
+        white-space: nowrap;
+    }
+    thead,
+    /*thead .second-col,*/
+    thead .third-col,
+    tfoot,
+        /*tfoot .first-col, */
+    tfoot .third-col
+    {background-color: #c0ecaf;border-top: 1px solid #ddd;}
+    .first-col {
+        position: absolute;
+        width: 285px;
+        margin-left: -285px;
+        padding:8px 0px !important;
+    }
+    .first-col input{width: 30px; margin: 0}
+    .first-col th[colspan=3]{
+        width: 285px;
+        margin-left: -285px;
+    }
+    /*.second-col{*/
+    /*    position: absolute;*/
+    /*    width: 250px;*/
+    /*    margin-left: -250px;*/
+    /*}*/
+    .third-col{
+        position: absolute;
+        width: 60px;
+        margin-left: -60px;
+    }
+    .third-col input{padding: 0}
+
+    .table-wrapper {
+        overflow-x: scroll;
+        max-width: 100%;
+        margin-left: 285px;
+        margin-right:0px;
+    }
+    .table-wrapper table{width: auto}
+    .pt20{
+        padding-bottom:20px;
+    }
+    tr:nth-child(even), tr:nth-child(even) td.second-col, tr:nth-child(even) td.third-col{background-color: #dff0d8}
+    .form-control.number-input{
+        min-width: 65px;
+        padding: 6px 3px;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).ready(function() {
+            $("tbody").sortable({
+                start:function(){
+                    $(".table-wrapper").css("margin-left", "0px");
+                    $(".first-col").css("position", "inherit");
+                    // $(".second-col").css("position", "inherit");
+                    $(".third-col").css("position", "inherit");
+                },
+                stop: function(){
+                    $(".table-wrapper").css("margin-left", "285px");
+                    $(".first-col").css("position", "absolute");
+                    // $(".second-col").css("position", "absolute");
+                    $(".third-col").css("position", "absolute");
+                }
+            });
+            $("tr td:nth-child(1)").addClass('first-col');
+            // $("tr td:nth-child(2)").addClass('second-col');
+            $("tr td:nth-child(2)").addClass('third-col');
+        } );
+    })
+</script>

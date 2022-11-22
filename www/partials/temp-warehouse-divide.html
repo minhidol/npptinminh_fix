@@ -1,0 +1,34 @@
+<div ng-app="dashboard" ng-controller="warehouseDivideController">
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span ><span class="ico  gray random title"></span> Danh sách sản phẩm phân kho</span>
+        </div><!-- End header -->	
+        <div class=" clear"></div>
+        <div class="content"  >
+            <div class="section">
+                <h3>Phân kho</h3>
+            </div>
+            <form> 
+                <div class="tableName">
+                    <table id="tabel_product_type" class="display">
+                        <thead>
+                            <tr>
+                                <th><div class="th_wrapp">id</div></th>
+                                <th><div class="th_wrapp">Tên Sản Phẩm</div></th>
+                                <th><div class="th_wrapp">Số lượng</div></th>
+                                <th><div class="th_wrapp">Quy cách</div></th>
+                                <th><div class="th_wrapp">Kho</div></th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-product-divide">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <div class="section last">
+                <div class="right" style="margin-left: 435px"><a class="uibutton " ng-click='divideWarehouse($event);disabled=true' ng-disabled="disabled">Phân kho</a></div>
+            </div>
+        </div>
+    </div>
+</div>

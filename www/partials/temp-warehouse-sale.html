@@ -1,0 +1,317 @@
+<div ng-app="dashboard" ng-controller="warehouseSaleController">
+    <div class="onecolumn" style='margin-top: 10px'>
+        <div class="header">
+            <span>
+                <span class="ico gray window title"></span>
+                Bán hàng trực tiếp
+            </span>
+        </div>
+        <div class="clear"></div>
+        <div class="content">
+            <form ng-submit="addWhole()">
+                <div class='row '>
+                    <div class="col-sm-12 col-md-6">
+                        <label>Chọn khách hàng</label>
+                        <select class="form-control" data-live-search="true" ng-model="selectedCus"
+                                ng-options="cus.id as cus.address for cus in lstCustomer" ng-change="selectCustomer()"
+                                id="select-customer" tabindex="1">
+                            <option value="0" selected>Khách hàng vãng lai</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <label>Chọn saler</label>
+                        <select class="form-control" data-live-search="true" ng-model="selectedUser" id="select-user"
+                                ng-options="user.id as user.name for user in lstUser" tabindex="2">
+                            <option style="display:none" value="">-- Chọn Saler --</option>
+                        </select>
+                    </div>
+
+                </div>
+                <table class="table">
+                    <thead>
+                    <th>Tên khách hàng</th>
+                    <th>Địa chỉ</th>
+                    <th>Di động</th>
+                    <th>Điện thoại bàn</th>
+                    <th>Tổng nợ</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{currentCustomer.name}}</td>
+                        <td>{{currentCustomer.address}}</td>
+                        <td>{{currentCustomer.phone_mobile}}</td>
+                        <td>{{currentCustomer.phone_home}}</td>
+                        <td>{{currentCustomer.total_debt.debt | number}} - <a
+                                href="#total-debit-customer/{{currentCustomer.id}}" target="_blank">Xem chi tiết</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row" style="margin-left: 0">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <h3 style="margin-top: 10px">Danh sách sản phẩm</h3>
+
+                        <div style="margin-left: 0%">
+                            <table class="display">
+                                <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Tồn kho hiện tại</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá bán</th>
+                                    <th>Thành tiền</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody class="list_order_product">
+                                <tr class="product_order" ng-repeat="(i,product) in lstOrderProduct">
+                                    <td>
+                                        <select ng-model="lstOrderProduct[$index].product"
+                                                class="form-control product selectpicker" data-live-search="true"
+                                                ng-options="item.id as item.name for item in danhSachSanPham | filter:productSelectFilter(i)"
+                                                ng-change="productChange(i)" tabindex="{{i*3 + 3}}">
+                                            <option style="display:none" value="">-- Chọn sản phẩm --</option>
+                                        </select>
+                                    </td>
+                                    <td ng-if="product.inventory < product.quantity" class="text-danger">
+                                        {{product.inventory | number}} - Không đủ tồn kho
+                                    </td>
+                                    <td ng-if="product.inventory >= product.quantity">
+                                        {{product.inventory | number}}
+                                    </td>
+                                    <td>
+                                        <input ng-keyup="calculatorPrice()" type="text" class="form-control"
+                                               ng-model="lstOrderProduct[$index].quantity"
+                                               value="" tabindex="{{i*3 + 4}}" number-input/>
+                                    </td>
+                                    <td>
+                                        <input class="show_sale form-control" type="text"
+                                               ng-model="lstOrderProduct[$index].price" ng-change="calculatorPrice"
+                                               ng-keyup="calculatorPrice()" value="" tabindex="{{i*3 + 5}}"
+                                               number-input/>
+                                        <input type="hidden" class="show_sale_origin"/>
+                                    </td>
+                                    <td>
+                                        <span id="sub-total-{{$index}}">{{lstOrderProduct[$index].price * lstOrderProduct[$index].quantity | number:0}}</span>
+                                        <input class="price_order form-control" type="hidden" id="txt_hide_1"
+                                               value="0"/>
+                                    </td>
+                                    <th scope="row" style="width: 51px" ng-click="deleteProduct($index)"><a
+                                            href="#">Xóa</a>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td>
+                                        <div class="iconBox color">
+                                            <a class="btn_more_order" data-id="1" ng-click="moreOrder()"
+                                               title="Thêm sản phẩm">
+                                                <img alt="" src="/www/img/icon/directional_down.png">
+                                            </a>
+                                        </div>
+                                        Click hoặc ấn phím <strong>+</strong> để thêm sản phẩm
+                                    </td>
+                                    <td colspan="5" style="text-align: right">
+                                        <h5>Tạm tính: <span id="total_order">{{totalValue | number:0}}</span></h5>
+                                        <input type="hidden" id="txt_hide_total_bill" ng-model="totalValue"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" style="text-align: right">
+                                        <h5>
+                                            Khuyến mãi: {{totalPromotion | number:0}}
+                                        </h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left">
+                                        <h4>
+                                            {{totalbox | number:0}} (thùng)
+                                        </h4>
+                                    </td>
+                                    <td colspan="5" style="text-align: right">
+                                        <h4>
+                                            Tổng cộng: {{totalValue - totalPromotion | number:0}}
+                                        </h4>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+                                <h3 style="margin-top: 10px">Danh sách khuyến mãi</h3>
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                                <button class="btn btn-primary" style="margin-top: 10px" ng-click="checkPromotion()">
+                                    Kiểm tra
+                                </button>
+                            </div>
+                        </div>
+                        <table class="table" ng-if="lstPromotion.length > 0">
+                            <thead>
+                            <th>STT</th>
+                            <th>Tên Hàng</th>
+                            <th>ĐV Tính</th>
+                            <th>Số Lượng</th>
+                            <th>Đơn Giá</th>
+                            <th>Thành tiền</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <tr style="border: none" ng-repeat-start="(i,promotion) in lstPromotion">
+                                <td scope="row"></td>
+                                <td colspan="5"><span
+                                        style="color: #dea624;font-style: italic;"> {{promotion.display}}</span></td>
+                            </tr>
+                            <tr ng-repeat="(j,detail) in lstPromotion[i].detail">
+                                <td scope="row">{{j + 1}}</td>
+                                <td>{{detail.title}}</td>
+                                <td>{{detail.unit}}</td>
+                                <td>
+                                    <input type="number" name="" class="form-control" value="{{detail.quantity}}"
+                                           ng-change="editNumberPromotion()"
+                                           ng-model="lstPromotion[i].detail[j].quantity">
+                                </td>
+                                <td>{{detail.value}}</td>
+                                <td>{{detail.totalValue}}</td>
+                                <th scope="row" style="width: 51px"><a href="#" ng-click="deletePromotion(i,j)">Xóa</a>
+                                </th>
+                            </tr>
+                            <tr ng-repeat-end></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="row" style="margin-left: -15px; margin-top: 45px">
+                        <div class="col-md-6">
+                            <label>Ghi chú</label>
+
+                            <div>
+                                <textarea ng-model="order.note" cols="95" rows="6"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="thanhtoan">Thanh toán</label>
+                                    <input class="form-control ng-pristine ng-valid" id="thanhtoan"
+                                           ng-model="order.thanhtoanhoadon" number-input>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="connolai">Còn nợ lại</label>
+                                    <input class="form-control" id="connolai" value="{{totalValue - totalPromotion - order.thanhtoanhoadon | number}}"
+                                           disabled readonly>
+                                </div>
+                                <div class="col-md-12" style="padding-top: 30px">
+                                    <button class="btn btn-primary" ng-click="printOrder()">In hóa đơn</button>
+                                    <input class="uibutton loading" ng-click="saveOrder()" title="Saving" type="submit"
+                                           value=" Tạo hóa đơn " ng-disabled="disableSave"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </form>
+</div>
+</div>
+<div style="display: none;" id="print-area">
+    <div class="row" style="margin: 0">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12"><strong>CÔNG TY TNHH TM TÍN MINH</strong></div>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12"><strong>Địa chỉ: </strong>27 Dương Khuê, P. Hiệp Tân,
+            Q. Tân Phú
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <table class="table" style="margin-left: -8px">
+                <tbody>
+                <tr>
+                    <td style="border: none;padding: 2px 8px;"><strong>Điện thoại: </strong>0888 111 066</td>
+                    <td style="border: none;padding: 2px 8px;"><strong>MST: </strong>0888 111 066</td>
+                </tr>
+                <tr>
+                    <td style="border: none;padding: 2px 8px;"></td>
+                    <td style="border: none;padding: 2px 8px;"><strong>Saler:</strong> {{getSalerName()}}</td>
+                </tr>
+                <tr>
+                    <td style="border: none;padding: 2px 8px;"><strong>Khách hàng: </strong>{{currentCustomer.store_name}}
+                    </td>
+                    <td style="border: none;padding: 2px 8px;">ĐT: {{currentCustomer.phone_mobile[0]}}</td>
+                </tr>
+                <tr>
+                    <td style="border: none;padding: 2px 8px;"><strong>Địa chỉ:</strong>
+                        {{currentCustomer.address}}
+                    </td>
+                    <td style="border: none;padding: 2px 8px;"> {{currentDate}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <table class="table">
+                <thead>
+                <th>STT</th>
+                <th>Tên Hàng</th>
+                <th>ĐV Tính</th>
+                <th>Số Lượng</th>
+                <th>Đơn Giá</th>
+                <th>Thành tiền</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="product in lstOrderProduct">
+                    <td scope="row">{{$index + 1}}</td>
+                    <td>{{ getProductName(lstOrderProduct[$index].product) }}</td>
+                    <td>{{ getProductUnit(product.product) }}</td>
+                    <td>{{product.quantity | number:0}}</td>
+                    <td>{{product.price | number:0}}</td>
+                    <td>{{product.price * product.quantity | number:0}}</td>
+                </tr>
+                <tr>
+                    <td scope="row"></td>
+                    <td><strong></strong></td>
+                    <td></td>
+                    <td>{{totalQuantity | number:0}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td scope="row"></td>
+                    <td colspan="4" style="text-align: right"><strong>Tổng cộng</strong></td>
+                    <td><strong>{{totalValue | number:0}}</strong></td>
+                </tr>
+                <tr style="border: none" ng-repeat-start="(i,promotion) in lstPromotion">
+                    <td scope="row"></td>
+                    <td colspan="5"><i>*{{promotion.display}}</i></td>
+                </tr>
+                <tr ng-repeat="(j,detail) in lstPromotion[i].detail">
+                    <td scope="row">{{j + 1}}</td>
+                    <td>{{detail.title}}</td>
+                    <td>{{detail.unit}}</td>
+                    <td>{{detail.quantity}}</td>
+                    <td>{{detail.value}}</td>
+                    <td>{{detail.totalValue}}</td>
+                </tr>
+                <tr ng-repeat-end></tr>
+                <tr ng-if="lstPromotion.length > 0">
+                    <td colspan="5" style="text-align: right;"><strong>Còn lại</strong></td>
+                    <td><strong>{{totalValue - totalPromotion | number}}</strong></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    $(window).keydown(function (e) {
+        if (e.key == '+') {
+            e.preventDefault();
+            $("a.btn_more_order").trigger("click");
+        }
+    });
+</script>

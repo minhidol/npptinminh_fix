@@ -1,0 +1,1538 @@
+<div ng-app="dashboard" ng-controller="ProductUnit">
+	<div class="onecolumn" style="margin-top: 10px">
+		<div class="header">
+			<span><span class="ico  gray random title"></span>Quản lý quy cách sản phẩm</span>
+		</div>
+		<!-- End header -->
+		<div class=" clear"></div>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+					<div class="panel panel-success">
+						<div class="panel-heading panel-clickable panel-collapsed">
+							<span class="panel-title">Thêm mới quy cách</span>
+							<span class="pull-right"><i class="glyphicon glyphicon-chevron-down"></i></span>
+						</div>
+						<div class="panel-body" style="display: none;">
+							<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+								<input type="text" name="new-unit" ng-model="newUnit" class="form-control" placeholder="Nhập quy cách mới">
+							</div>
+							<div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+								<div class="checkbox">
+									<label hidden=""><input type="checkbox" value="" checked="" ng-model="isPrefix" >Prefix tên</label>
+								</div>
+							</div>
+							<div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+								<button class="btn btn-success" ng-click="SaveNewUnit()">Lưu</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div  class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+									<span class="panel-title">
+										Danh sách quy cách
+									</span>
+								</div>
+								<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+									<div class="input-group">       
+										<input type="text" class="form-control" ng-model="searchListUnitText" placeholder="Lọc quy cách">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button">
+												<span class="glyphicon glyphicon-search" style="padding: 3px 0">												
+												</span>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>							
+						</div>
+						<div class="panel-body" style="max-height: 500px;overflow-y: auto;">
+							<table class="table">
+								<tbody>
+									<tr ng-repeat="unit in lstUnit | filter: searchListUnitText">
+										<th scope="row">{{$index + 1}}</th>
+										<td>
+											<input type="text" name="unit-{{$index}}" value="{{unit.name}}" class="form-control">
+										</td>
+										<td hidden="">
+											<div class="checkbox">
+											<label><input type="checkbox" name="lstUnitPrefix-{{$index}}" ng-checked="unit.is_prefix == '1'">Prefix tên</label>
+											</div>
+										</td>
+										<td>
+											<button class="btn btn-primary" ng-click="EditUnit($index, unit.id)">Lưu</button>
+										</td>
+										<td>
+											<button class="btn btn-error" ng-click="DeleteUnit($index, unit.id)">Xóa</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-md-5 col-lg-5 col-sm-6 col-xs-12 col-md-offset-1 col-lg-offset-1">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+									<span class="panel-title">
+										Danh sách quy đổi
+									</span>
+								</div>
+								<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+									<div class="input-group">       
+										<input type="text" class="form-control" ng-model="searchListUnitText" placeholder="Lọc quy cách">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button">
+												<span class="glyphicon glyphicon-search" style="padding: 3px 0">												
+												</span>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body" style="max-height: 500px;overflow-y: auto;">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+									<tr>
+										<th scope="row">1</th>
+										<td>Thùng</td>
+										<td>Hảo Hảo</td>
+										<th scope="row">=</th>
+										<th scope="row">3</th>
+										<td>Gói</td>
+										<td>Hảo Hảo</td>
+										<td><button class="btn btn-error">Xóa</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#panel-add-unit").click(function(){
+			$("#toggle-add-unit").click();
+		});
+		$("#panel-unit-convert").click(function(){
+			$("#toggle-unit-convert").click();
+		});
+	})
+
+	$(document).on('click', '.panel-clickable', function(e){
+		var $this = $(this);
+		if(!$this.hasClass('panel-collapsed')) {
+			$this.parents('.panel').find('.panel-body').slideUp();
+			$this.addClass('panel-collapsed');
+			$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+		} else {
+			$this.parents('.panel').find('.panel-body').slideDown();
+			$this.removeClass('panel-collapsed');
+			$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+		}
+	})	
+</script>

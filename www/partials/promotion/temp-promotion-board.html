@@ -1,0 +1,94 @@
+<div ng-app="dashboard" ng-controller="promotionBoardController">
+	<div class="onecolumn" style="margin-top: 10px">
+		<div class="header">
+			<span><span class="ico  gray random title"></span> Danh sách Khuyến mãi</span>
+		</div>
+		<!-- End header -->
+		<div class=" clear"></div>
+		<div class="content">
+			<div class="row">
+				<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="input-group">
+								<div class="input-group-btn search-panel">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+										<span id="search_concept">Lọc theo trạng thái - {{currentState}}</span> <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
+										<li ng-click="changeState('Tất cả')"><a href="#">Tất cả</a></li>
+										<li ng-click="changeState('Đang chạy')"><a href="#">Đang chạy</a></li>
+										<li ng-click="changeState('Chưa chạy')"><a href="#">Chưa chạy</a></li>
+										<li ng-click="changeState('Đã kết thúc')"><a href="#">Đã kết thúc</a></li>
+									</ul>
+								</div>
+								<input type="hidden" name="search_param" value="all" id="search_param">         
+								<input type="text" class="form-control" ng-model="searchText" placeholder="Nhập tên khuyến mãi">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" style="padding: 3px 0"></span></button>
+								</span>
+							</div>
+						</div>
+						<div class="panel-body">
+							<table class="table">
+								<thead>
+									<th>#</th>
+									<th>Tên chương trình</th>
+									<th>Từ ngày</th>
+									<th>Đến ngày</th>
+									<th>Trạng thái</th>
+									<th></th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="promotion in lstPromotion | filter: filterState(lstPromotion) | orderBy:'start_date':true" ng-click="ShowDetail(promotion.id)">
+										<th scope="row">{{$index + 1}}</th>
+										<td>{{promotion.name}}</td>
+										<td>{{promotion.start_date}}</td>
+										<td>{{promotion.end_date}}</td>
+										<td ng-class="{'color-gray': promotion.trangthai == 'Đã kết thúc', 'color-orange': promotion.trangthai == 'Đang chạy', 'color-black': promotion.trangthai == 'Chưa chạy'}">{{promotion.trangthai}}</td>
+										<td>
+											<button class="btn btn-primary" ng-click="Edit(promotion.id)">Sửa</button>
+											<button class="btn btn-error" ng-click="Delete(promotion.id)">Xóa</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>  
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Chi tiết khuyến mãi - <strong>{{tenKhuyenMai}}</strong></div>
+						<div class="panel-body">
+							<table class="table">
+								<thead>
+									<th>Sản phẩm</th>
+									<th>Số lượng</th>
+									<th>Doanh thu</th>
+									<th>Chiết khấu</th>
+									<th>Tặng</th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="(index,km) in addedKhuyenMai">
+										<td>{{km.dk.sanPham.name}}</td>
+										<td>{{km.dk.sanPham.soLuong | number}}</td>
+										<td>{{km.dk.doanhThu.value | number}}</td>
+										<td>{{km.ud.chietKhau.value | number}}</td>
+										<td>{{km.ud.tang.display}}</td>
+										<td><button class="btn btn-error" ng-click="deletePro(index,km.id)">Xóa</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2 col-ms-3 col-ms-offset-2 col-xs-3 col-xs-offset-2">
+						<input class="form-control btn-success" title="Lưu" type="button" ng-click="savePromotion()" value="Lưu Khuyến mãi" ng-disabled="nothingToSave"/>
+					</div>
+					<div class="col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2 col-ms-3 col-ms-offset-2 col-xs-3 col-xs-offset-2">
+						<input class="form-control btn-primary" title="Tải lại chi tiết khuyến mãi" type="button" ng-click="refreshPromotion()" value="Tải lại"/>
+					</div>
+				</div>
+			</div>         
+		</div>
+	</div>
+</div>

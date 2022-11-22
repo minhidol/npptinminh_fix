@@ -1,0 +1,87 @@
+<div ng-app="dashboard" ng-controller="SalesStatistic">
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span><span class="ico  gray random title"></span> Thống kê doanh số</span>
+        </div>
+        <!-- End header -->
+        <div class=" clear"></div>
+        <div class="content">
+            <div class="row" style="margin-top: 10px; margin-bottom: 20px;">
+                <div class="col-md-6 col-ms-12" style="padding-left: 0">
+                    <div class="col-md-5 col-lg-5 col-ms-5 col-xs-5">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="from" placeholder="Từ ngày"
+                                   ng-click="openFrom($event)" datepicker-popup="dd-MM-yyyy" ng-model="from_date"
+                                   is-open="fromOpened" close-text="Close" datepicker-options="dateOptions">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-5 col-ms-5 col-xs-5">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Đến ngày" name="to"
+                                   ng-click="openTo($event)"
+                                   datepicker-popup="dd-MM-yyyy" ng-model="to_date" is-open="toOpened" close-text="Close">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-ms-2 col-xs-2 text-right">
+                        <button class="btn btn-success" ng-click="init()">Search</button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-ms-12" style="pointer-events: none;">
+                    <div class="col-md-3 col-ms-6">
+                        Tổng tiền mặt: <strong>{{totalCash|number}}</strong>
+                    </div>
+                    <div class="col-md-3 col-ms-6">
+                        Tổng nợ: <strong>{{totalDebit|number}}</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="table-responsive" ng-if="statisticData && statisticData.length > 0">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr class="success">
+                            <th style="min-width: 100px;max-width:100px;width:100px;text-align: center; vertical-align: middle">Tổng vốn</th>
+                            <th rowspan="2" style="min-width: 120px;max-width:120px;width:120px;text-align: center; vertical-align: middle">Sản phẩm</th>
+                            <th rowspan="2" style="min-width: 110px;max-width:110px;width:110px;text-align: center; vertical-align: middle">Tổng SL bán</th>
+                            <th style="min-width: 100px;max-width:100px;width:100px;text-align: center; vertical-align: middle">Tổng DT</th>
+                            <th style="min-width: 100px;max-width:100px;width:100px;text-align: center; vertical-align: middle">Tổng LN</th>
+                            <td colspan="{{maxLength}}" rowspan="2"></td>
+                            <th style="min-width: 120px;max-width:120px;width:120px;text-align: center; vertical-align: middle" title="Tổng chiết khấu">Tổng CK</th>
+                            <th colspan="2" style="min-width: 110px;max-width:110px;width:110px;text-align: center; vertical-align: middle" title="Tổng khuyến mãi">Tổng khuyến mãi</th>
+                        </tr>
+                        <tr class="success">
+                            <th style="text-align: right; vertical-align: middle">{{totalCost|number}}</th>
+                            <th style="text-align: right; vertical-align: middle">{{totalAmount|number}}</th>
+                            <th style="text-align: right; vertical-align: middle">{{totalAmount - totalCost|number}}</th>
+                            <th style="text-align: right; vertical-align: middle">{{totalDiscount|number}}</th>
+                            <th style="text-align: right; vertical-align: middle">{{totalPromotionProductValue|number}}</th>
+                            <th>Đơn vị</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="data in statisticData" style="text-align: right">
+                            <td>{{data.cost|number}}</td>
+                            <td style="text-align: center;">{{data.productName}}</td>
+                            <td>{{data.totalQuantity|number}}</td>
+                            <td>{{data.totalAmount|number}}</td>
+                            <td>{{data.totalAmount - data.cost|number}}</td>
+                            <td ng-repeat="detail in data.priceDetail"><a href="/index.php/dashboard#/statistic/bill-list/{{getFromDate()}}/{{getToDate()}}/{{data.proId}}/{{detail.price}}" target="_blank"><strong>{{detail.price|number}}</strong><br/>{{detail.quantity|number}}</a></td>
+                            <td ng-if="data.count < maxLength" colspan="{{maxLength - data.count}}"></td>
+                            <td></td>
+                            <td ng-if="data.promotion">{{data.promotion.quantity}}</td>
+                            <td ng-if="data.promotion">{{data.promotion.unit}}</td>
+                            <td ng-if="!data.promotion"></td>
+                            <td ng-if="!data.promotion"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive" ng-if="!statisticData || statisticData.length <= 0">
+                    Không tìm thấy dữ liệu. Vui lòng chọn khoảng thời gian thích hợp và thử lại.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<div ng-app="dashboard" ng-controller="returnOrderHalfController">
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span ><span class="ico  gray random title"></span> Danh sách sản phẩm</span>
+        </div><!-- End header -->
+        <div class=" clear"></div>
+        <div class="content"  >
+            <div class="section">
+                <h3>Phân kho</h3>
+            </div>
+            <form> 
+                <div class="tableName">
+                    <table id="tabel_product_type" class="display" style="text-align: left">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Số lượng nhận</th>
+                                <th>Trả về kho</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(key,orderdetail) in order" data-product-id="{{orderdetail.product_id}}">
+                                <td>{{key + 1}}</td>
+                                <td>{{orderdetail.product_name}}</td>
+                                <td>
+                                    <span id="show_quantity_retail_{{orderdetail.product_id}}">{{orderdetail.quantity}}</span>
+                                    <input id="origin_quantity_{{orderdetail.product_id}}" type="hidden" value="{{orderdetail.quantity}}"/>
+                                </td>
+                                <td>
+                                    <input class="quantity_{{orderdetail.product_id}} warehouse_quantity" data-product-id="{{orderdetail.product_id}}"  ng-keyup="quantityWarehouse(key)" type="text" ng-model="order[key].received"/>
+                                </td>
+                                <td>{{orderdetail.quantity - orderdetail.received}}</td>
+                                <td>
+                                    <span>{{orderdetail.price|number}}</span>
+                                </td>
+                                <td>
+                                    <span class="new_price" id="show_real_quantity_retail_{{orderdetail.product_id}}">{{orderdetail.price * orderdetail.received|number}}</span>
+                                    <input type="hidden" value="{{orderdetail.price}}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;border: none;font-weight: bold" colspan="6">Tiền hàng</td>
+                                <td>{{tempAmount|number}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;border: none;font-weight: bold" colspan="6">
+                                        <input type="checkbox" ng-model="applyPromotion" ng-change="calPrice()" style="transform: scale(1.5)">
+                                    Khuyến mãi
+                                </td>
+                                <td><label ng-if="applyPromotion">{{totalPromotionValue|number}}</label></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;border: none;font-weight: bold" colspan="6">Nợ còn lại</td>
+                                <td>{{totalDebit|number}}</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;font-weight: bold" colspan="6">Tổng tiền</td>
+                                <td>{{total_price|number}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <div class="section last">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Lý do trả hàng</span>
+                            <textarea class="form-control" ng-model="reason"></textarea>
+                        </div>
+                    </div><!--
+                    --><div class="col-md-6" style="padding-top: 20px">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Thanh toán</span>
+                                    <input ng-change="calPrice()" class="form-control" type="text" ng-model="actual_price"/>
+                                    <span class="input-group-addon">Nợ: <strong>{{debit}}</strong></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3"><button class="btn btn-success" ng-click="divideWarehouse()">Xử lý</button> </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

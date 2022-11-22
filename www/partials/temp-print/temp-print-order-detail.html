@@ -1,0 +1,106 @@
+<html>
+<head>
+  <style>
+    body {
+      font-size: 12px;
+    }
+
+    .contents {
+      width: 100%;
+      margin: 0px auto;
+    }
+
+    h2 {
+      margin: 0px 0px 5px 0px;
+    }
+
+    .title {
+      display: block;
+    }
+
+    .store {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .customer {
+      margin-bottom: 20px;
+    }
+
+    .information {
+      width: 50%;
+      float: left;
+    }
+
+    .customer span {
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    th {
+      border: 1px dotted #999;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    td {
+      border: 1px dotted #999;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    td:nth-child(3){
+      text-align: center;
+    }
+    table {
+      font-size: 12px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<!--<body>-->
+<body onload="window.print(); window.close()">
+<div class="contents">
+  <div style="margin-bottom: 30px">MãHĐ: {{ orderCode }}</div>
+  <div class="store">
+    <h2>TUẤN MAI</h2>
+    <span class="title">18 Ỷ lan, P.Hiệp Tân, Q.Tân Phú</span>
+    <span class="title">38605295 - 01265343530 - 01669293737</span>
+  </div>
+  <div class="customer">
+    <div class="information">
+      <div>Khách hàng: <span>{{ customer.name }}</span></div>
+      <div>Ngày: <span>{{ dateOrder }}</span></div>
+    </div>
+    <div>
+      <div>Địa chỉ: <span>{{ customer.address }}</span></div>
+      <div>Số đt: <span>{{ customer.phone }}</span></div>
+    </div>
+  </div>
+  <div>
+    <Table>
+      <thead>
+      <th>STT</th>
+      <th>Sản phẩm</th>
+      <th style="text-align: center">Số lượng</th>
+      <th>Đơn Giá</th>
+      <th>Thành tiền</th>
+      </thead>
+      <tbody id="content-order">
+      {{ orderDetail }}
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="2">
+          <span>Nợ cũ: {{ totalDebit }}</span>
+        </td>
+        <td style="text-align: center">{{ totalQuantity }}</td>
+        <td></td>
+        <td>{{ totalPrice }}</td>
+      </tr>
+      </tfoot>
+    </Table>
+  </div>
+</div>
+</body>
+</html>

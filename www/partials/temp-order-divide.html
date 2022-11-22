@@ -1,0 +1,285 @@
+
+<div ng-app="dashboard" ng-controller="divideOrderController" id="divideOrderController">
+    <script type="text/ng-template" id="update_quantity_product">
+        <div class="modal-header">
+            <h3 class="modal-title">Cập nhật số lượng</h3>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class='section'>
+                    <label style="font-size: 15px;margin-top: 25px;">{{ product_name }}</label>
+                    <div>
+                        <table class="display">
+                            <thead>
+                                <tr>
+                                    <th>Cửa hàng</th>
+                                    <th>Địa chỉ</th>
+                                    <th>số lượng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="(key,item) in orders">
+                                <td>{{item.customer_detail.store_name}}</td>
+                                <td>{{item.customer_detail.address}}</td>
+                                <td><input type="text" class='quantity-order' data-order-detail-id="{{item.order_detail.id}}" value="{{item.order_detail.quantity}}"/></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a class="uibutton " ng-click='ok()'>Lưu</a>
+            <a class="uibutton special" ng-click='cancel()'>Hủy</a>
+        </div>
+    </script>
+    <div class="onecolumn" style="margin-top: 10px">
+        <div class="header">
+            <span ><span class="ico  gray random title"></span> Danh sách sản phẩm theo đơn hàng</span>
+        </div><!-- End header -->   
+        <div class=" clear"></div>
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 pt20">
+                    <div class=" input-group">
+                        <span class="input-group-addon">Ngày</span>
+                        <input type="text" class="form-control" readonly value="{{shipment.info.date | date : 'yyyy-MM-d'}} - Chuyến {{shipment.info.index}}">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 pt20">
+                    <div class=" input-group">
+                        <span class="input-group-addon">Xe</span>
+                        <input type="text" readonly value="{{shipment.info.truck_name}}" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 pt20">
+                    <div class=" input-group">
+                        <span class="input-group-addon">Tài xế</span>
+                        <select ng-model="shipment.driver" class="form-control selectpicker driver" data-live-search="true" ng-options="taixe.name as taixe.name for taixe in staffs" id="taixe">
+                            <option style="display:none" value="">-- Chọn tài xế --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 pt20">
+                    <div class=" input-group">
+                        <span class="input-group-addon">Lơ xe</span>
+                        <select ng-model="shipment.sub_driver" class="form-control selectpicker sub-driver" data-live-search="true" multiple="multiple" ng-options="loxe.name as loxe.name for loxe in staffs" id="loxe">
+                            <option style="display:none" value="">-- Chọn lơ xe --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row table-wrapper">
+                <table class="table table-bordered" id='data-table'>
+                    <thead>
+                        <tr>
+                            <th style="text-align: center;">Khách hàng</th>
+                            <th ng-repeat="product in productList.detail">{{product.product_name}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(index,order) in orderList">
+                            <td class="form-inline">
+                                <input class="form-control" type="checkbox" name="select{{order.id}}" ng-model="checkList[order.id]" style="border: none;background:transparent;" value="{{order.id}}">
+                                <input class="form-control" value="{{order.customer_detail.address}}" readonly style="border: none;background:transparent;pointer-events:none;">
+                                <input class="form-control" value="{{order.totalQuantity}}" readonly="" style="border: none;background:transparent;pointer-events:none;">
+                            </td>
+                            <td ng-repeat="product in productList.detail">
+                                <span ng-if="getIndexOfProduct(order, product.product_id) === undefined"></span>
+                                <input type="number" name="" ng-model="orderList[index].order_detail[getIndexOfProduct(order, product.product_id)].quantity" class="form-control number-input" ng-if="getIndexOfProduct(order, product.product_id) !== undefined" value="{{orderList[index].order_detail[getIndexOfProduct(order, product.product_id)].quantity}}" ng-change="productQuantityChange(index,getIndexOfProduct(order, product.product_id))">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th style="text-align: right;padding-right: 40px !important;"><strong>Tổng cộng:</strong> {{productList.summary.total_quantity}}</th>
+                            <th ng-repeat="product in productList.detail">{{product.total_quantity}} <span ng-if="product.promotion">(+ {{product.promotion}})</span> </th>
+                        </tr>
+                        <tr>
+                            <th style="text-align: right;padding-right: 25px !important;"><strong>Tồn kho</strong></th>
+                            <th ng-repeat="product in productList.detail">{{product.inventory}}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="section last" style="margin-top: 20px">
+                <div class="right" style="text-align: center">
+                    <button class="btn btn-primary pull-left" data-target="#order-modal" data-toggle="modal">Chọn xử lý</button>
+                    <div style="float:left;margin-left: 5%;">Số thùng chuẩn: <strong>{{totalStandardBox}}</strong></div>
+                    <button class="uibutton " ng-click='divideProduct(false)'>Phân hàng</button>
+<!--                    <a class="uibutton confirm" ng-click='printProductList()'>In tất cả sản phẩm</a>-->
+                    <button class="btn btn-default" ng-click="divideProduct(true)">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a href="/index.php/dashboard#/order-divide/{{sm.id}}" ng-repeat="sm in other_shipment">
+            <button ng-if="sm.id ==shipment.info.id" class="btn btn-warning">{{sm.truck_name}} Chuyến {{sm.index}}</button>
+            <button ng-if="sm.id !=shipment.info.id" class="btn btn-success">{{sm.truck_name}} Chuyến {{sm.index}}</button>
+        </a>
+    </div>
+</div>
+
+<div id="order-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-default">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style="border: none;">Các đơn hàng được chọn sẽ được:</h4>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-link" onclick="removeShipment()">Xóa khỏi chuyến hiện tại</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-12" style="padding: 10px"><strong>Chuyển sang</strong></div>
+                            <div id="lst-chuyen"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style type="text/css">
+    th, td {
+        white-space: nowrap;
+    }
+    thead,
+    thead .second-col,
+    thead .third-col,
+    tfoot,
+    /*tfoot .first-col, */
+    tfoot .third-col
+    {background-color: #c0ecaf;border-top: 1px solid #ddd;}
+
+    .table-wrapper {
+        overflow-x: auto;
+        max-width: 100%;
+        margin-right:0px;
+        margin-left: 0;
+        position: relative;
+        max-height: 500px;
+    }
+    .table-wrapper table{width: auto}
+    .pt20{
+        padding-bottom:20px;
+    }
+    tr:nth-child(even), tr:nth-child(even) td.second-col, tr:nth-child(even) td.third-col{background-color: #dff0d8}
+    .form-control.number-input{
+        min-width: 65px;
+        padding: 6px 3px;
+    }
+    #data-table td.form-inline input:first-child {
+        width: 65px;
+        border-right: 1px solid #ddd;
+    }
+    #data-table td.form-inline input:nth-child(2) {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #data-table td.form-inline input:nth-child(3) {
+        width: 100px;
+        border-left: 1px solid #ddd;
+    }
+
+    /* Sticky first row and first column */
+
+    table#data-table thead tr th{
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        top: 0;
+        background: #5cb85c;
+        color: #FFF;
+        text-align: center;
+    }
+
+    table#data-table thead th:first-child{
+        left: 0;
+        z-index: 1;
+        text-align: left;
+    }
+
+    table#data-table tfoot th:first-child{
+        left: 0;
+        z-index: 1;
+        text-align: left;
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        background: #5cb85c;
+    }
+
+    table#data-table tbody tr td:first-child {
+        position: -webkit-sticky; /* for Safari */
+        position: sticky;
+        left: 0;
+        background: #FFF;
+        border-right: 1px solid #CCC;
+        text-align: left;
+    }
+
+    /*table#data-table th:after,*/
+    /*table#data-table th:before {*/
+    /*    content: '';*/
+    /*    position: absolute;*/
+    /*    left: 0;*/
+    /*    width: 100%;*/
+    /*}*/
+
+    /*table#data-table th:before {*/
+    /*    top: -1px;*/
+    /*    border-top: 1px solid red;*/
+    /*}*/
+
+    /*table#data-table th:after {*/
+    /*    bottom: -1px;*/
+    /*    border-bottom: 1px solid red;*/
+    /*}*/
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("tbody").sortable({
+            start:function(){
+                // $(".table-wrapper").css("margin-left", "0px");
+                $(".first-col").css("position", "inherit");
+                $(".second-col").css("position", "inherit");
+                $(".third-col").css("position", "inherit");
+            },
+            stop: function(){
+                // $(".table-wrapper").css("margin-left", "0px");
+                $(".first-col").css("position", "absolute");
+                $(".second-col").css("position", "absolute");
+                $(".third-col").css("position", "absolute");
+            }
+        });
+} );
+
+    function removeShipment(){
+        // $("#removeShipment").click();
+        angular.element('#divideOrderController').scope().removeShipment();
+         angular.element('#divideOrderController').scope().$apply();
+        $("#order-modal").modal('hide');
+    }
+
+    function changeShipment(id){
+
+        angular.element('#divideOrderController').scope().selectedShipment = id;
+        angular.element('#divideOrderController').scope().$apply();
+        // $("#changeShipment").click();
+        angular.element('#divideOrderController').scope().changeShipment();
+         angular.element('#divideOrderController').scope().$apply();
+        $("#order-modal").modal('hide');
+    }
+</script>
+
