@@ -1,3 +1,2 @@
 salesManagement
 ===============
-# npptinminh_fix

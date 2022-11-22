@@ -19,7 +19,7 @@ table.display thead tr th, table.display tfoot tr th {
 
 table.display thead {
 	text-shadow: 1px 1px 1px #fff;
-	background-image: url(../../img/inner-shadow.png);
+	background-image: url(../../www/img/inner-shadow.png);
 	background-color: #f2f2f2;
 	background-repeat: repeat-x;
 	background-position: left top;

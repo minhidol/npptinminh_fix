@@ -29,6 +29,31 @@ class Warehouses_model extends MY_model {
 		return $this->db->query($query)->result();
 	}
 
+	public function deleteHistoryInventory( ) {
+		$date = date('Y-m-d');
+		$query = "DELETE FROM inventory_history WHERE `date` = '{$date}';";
+		return $this->db->query($query);
+	}
+
+	public function insertHistoryInventory(){
+		$date = date('Y-m-d');
+		 $query_create = '
+        INSERT INTO inventory_history (product_id, quantity, unit, odd_quantity, odd_unit, total_value, `date`)
+		SELECT p.id                                                         as product_id,
+			   sum(CASE WHEN w.quantity IS NULL THEN 0 ELSE w.quantity END) as quantity,
+			   w.unit,
+			   IF(o.quantity IS NULL, 0, o.quantity)                        as odd_quantity,
+			   o.unit                                                       as odd_unit,
+			   sum( CASE WHEN w.quantity IS NULL THEN 0 ELSE w.quantity * w.price END ) as total_value,
+			   '.$date.'
+		FROM products as p
+				 LEFT JOIN warehouse_wholesale as w ON p.id = w.product_id
+				 LEFT JOIN warehouse_odd_product as o on w.product_id = o.product_id
+		group by p.id;
+        ';
+        $this->db->query($query_create);
+	}
+
 	public function beginDateInventory( $date = null ) {
 		if (!$date) {
 			$date = date('Y-m-d');

@@ -535,6 +535,7 @@ class Order extends MY_Controller
         $shipments = array_filter($shipments, function ($value) {
             return count($value->orders) > 0;
         });
+        //echo json_encode(['data143' => $shipments]);
         $this->load->model('PromotionDetail', 'Promotion');
         $this->Promotion->__set('table_name', 'promotion_order_view');
         $this->load->model('Debits_model', 'Debit');
@@ -670,6 +671,10 @@ class Order extends MY_Controller
             //update inventory
             $orders = $this->order->getByShipment($shipment_id);
             $this->load->model('order_detail_model', 'order_detail');
+            // add fix-minh
+            $this->load->model('check_use_trigger_model');
+            $this->check_use_trigger_model->update(['content_update' => 'update_unit'], ['table_name' => 'warehouse_wholesale']);
+            //
             foreach ($orders as $order) {
                 $order_detail = $this->order_detail->get_order_detail($order['id']);
                 foreach ($order_detail as $product) {
@@ -680,7 +685,10 @@ class Order extends MY_Controller
                     }
                 }
             }
-
+            // add fix-minh
+            $this->db->query('call update_date_inventory_not_trigger()');
+            $this->check_use_trigger_model->update(['content_update' => ''], ['table_name' => 'warehouse_wholesale']);
+            //
             //inventory of promotion
             $this->load->model('Warehouses_model');
             foreach ($listPromotionProduct as $orderId => $promotionProduct) {
@@ -735,7 +743,7 @@ class Order extends MY_Controller
 
         $this->shipments->update(['status' => "$status", 'index' => $lastIndex, 'date' => $shipmentDate], ['id' => $shipment_id]);
 
-        #update order
+        // #update order
         $this->order->update(['status' => 1], ['shipment_id' => $shipment_id]);
 
         $this->db->trans_complete();
@@ -1569,10 +1577,16 @@ class Order extends MY_Controller
     {
         $order = $this->input->json();
         $this->load->model('order_detail_model', 'order_detail');
-
+        //echo json_encode($order);
+        $order_detail = $order->orders;
+        $total = 0;
+        foreach($order_detail as $detail_temp){
+            $total += (int)$detail_temp->price * (int)$detail_temp->quantity;
+        }
+        //echo json_encode(['total' => $total]);
         $this->order->update([
             'customer_id' => $order->customer_id,
-            'total_price' => $order->total_price,
+            'total_price' => $total,
             'note' => $order->note,
             'saler' => $order->saler
         ], ['id' => $order->id]);
@@ -1659,7 +1673,13 @@ class Order extends MY_Controller
             $this->load->model('ProductUnitModel');
             $this->load->model('Debits_model', 'Debit');
             foreach ($orders as $key => &$order) {
+                $total = 0;
                 $order['detail'] = $this->order_detail->get_array(array('order_id' => $order['id']));
+                //echo json_encode($order['detail']);
+                foreach($order['detail'] as $detail_price){
+                    $total += (int)$detail_price->price * (int)$detail_price->quantity;
+                }
+                $order['total_price'] = $total;
                 $promotions = $this->Promotion->get_array(['order_id' => $order['id']]);
                 $totalPromotionValue = 0;
                 $groupedPros = [];

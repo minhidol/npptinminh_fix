@@ -1,0 +1,62 @@
+CUSTOM - 2022-11-22 14:45:17 --> Products::editProduct - /index.php/products/editProduct?id=241: {"name":"B\u1ed9t ng\u1ecdt 454","code":null,"description":null,"sale_unit":"3","primary_unit":"3","conversion_rate":1,"product_type":"9","list_price":[{"id":"1729","product_id":"241","parent_id":null,"name":"Ly","description":null,"quantity":"112","price":"1240000","unit":"3"}]}
+CUSTOM - 2022-11-22 14:45:33 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5402&status=1: []
+CUSTOM - 2022-11-22 14:45:58 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":0,"actual":0,"debt":null,"buy_price":[{"product_id":"323","quantity":123,"unit":"61","price":"0"}],"warehouseid":"2"}
+CUSTOM - 2022-11-22 14:46:05 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5402&status=1: []
+CUSTOM - 2022-11-22 14:47:11 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5402&status=1: []
+CUSTOM - 2022-11-22 14:47:38 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":20172000,"actual":0,"debt":null,"buy_price":[{"product_id":"279","quantity":123,"unit":"1","price":"164000"}],"warehouseid":"2"}
+CUSTOM - 2022-11-22 14:48:00 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":30873000,"actual":0,"debt":null,"buy_price":[{"product_id":"100","quantity":123,"unit":"1","price":"251000"}],"warehouseid":"2"}
+CUSTOM - 2022-11-22 14:48:05 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5402&status=1: []
+CUSTOM - 2022-11-22 14:51:22 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-22 14:51:42 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":20664000,"actual":0,"debt":null,"buy_price":[{"product_id":"160","quantity":123,"unit":"1","price":"168000"}],"warehouseid":"2"}
+CUSTOM - 2022-11-22 14:51:49 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-22 14:52:18 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":21279000,"actual":0,"debt":null,"buy_price":[{"product_id":"70","quantity":123,"unit":"1","price":"173000"}],"warehouseid":"2"}
+CUSTOM - 2022-11-22 14:52:23 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-22 14:53:20 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5401&status=1: []
+CUSTOM - 2022-11-22 14:53:39 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":13469976,"actual":0,"debt":null,"buy_price":[{"product_id":"328","quantity":123,"unit":"1","price":"109512"}],"warehouseid":"1"}
+CUSTOM - 2022-11-22 14:54:21 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":13469976,"actual":0,"debt":null,"buy_price":[{"product_id":"351","quantity":123,"unit":"1","price":"109512"}],"warehouseid":"1"}
+CUSTOM - 2022-11-22 14:54:44 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":19899432,"actual":0,"debt":null,"buy_price":[{"product_id":"27","quantity":123,"unit":"1","price":"161784"}],"warehouseid":"1"}
+CUSTOM - 2022-11-22 14:54:50 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5401&status=1: []
+CUSTOM - 2022-11-22 14:55:17 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":103935000,"actual":0,"debt":null,"buy_price":[{"product_id":"129","quantity":123,"unit":"1","price":"845000"}],"warehouseid":"2"}
+CUSTOM - 2022-11-22 14:55:20 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5401&status=1: []
+CUSTOM - 2022-11-22 14:55:58 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5400&status=1: []
+CUSTOM - 2022-11-22 14:56:17 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":24867648,"actual":0,"debt":null,"buy_price":[{"product_id":"18","quantity":123,"unit":"1","price":"202176"}],"warehouseid":"1"}
+CUSTOM - 2022-11-22 14:56:25 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5400&status=1: []
+CUSTOM - 2022-11-22 14:57:52 --> Products::editProduct - /index.php/products/editProduct?id=59: {"name":"D\u1ea7u TA 2L","code":"D\u1ea7u TA 2L","description":null,"sale_unit":"1","primary_unit":"1","conversion_rate":1,"product_type":"7","list_price":[{"id":"1701","product_id":"59","parent_id":null,"name":"Th\u00f9ng","description":null,"quantity":"12","price":"515000","unit":"1"}]}
+CUSTOM - 2022-11-22 15:00:36 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-22 15:00:49 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":20684664000,"actual":0,"debt":null,"buy_price":[{"product_id":"160","quantity":123123,"unit":"1","price":"168000"}],"warehouseid":"2"}
+CUSTOM - 2022-11-22 15:00:57 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-22 15:01:17 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":2129976000,"actual":0,"debt":null,"buy_price":[{"product_id":"70","quantity":12312,"unit":"1","price":"173000"}],"warehouseid":"2"}
+CUSTOM - 2022-11-22 15:01:25 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-22 15:02:03 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5400&status=1: []
+CUSTOM - 2022-11-22 15:02:32 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":1,"total_bill":2092771512,"actual":0,"debt":null,"buy_price":[{"product_id":"32","quantity":12311,"unit":"1","price":"169992"}],"warehouseid":"1"}
+CUSTOM - 2022-11-22 15:02:39 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5400&status=1: []
+CUSTOM - 2022-11-22 15:03:39 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5400&status=1: []
+ERROR - 2022-11-22 15:03:40 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: call update_date_inventory_not_trigger()
+ERROR - 2022-11-22 15:03:40 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_odd_product` SET `quantity` = 9
+WHERE `product_id` = '1'
+ERROR - 2022-11-22 15:03:40 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_wholesale` SET `quantity` = 375, `processed` = 0
+WHERE `id` = '19544'
+ERROR - 2022-11-22 15:03:40 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_odd_product` SET `quantity` = 10
+WHERE `product_id` = '1'
+ERROR - 2022-11-22 15:03:41 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_wholesale` SET `quantity` = 374, `processed` = 0
+WHERE `id` = '19544'
+ERROR - 2022-11-22 15:03:41 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_odd_product` SET `quantity` = 4
+WHERE `product_id` = '1'
+ERROR - 2022-11-22 15:03:41 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_wholesale` SET `quantity` = 374, `processed` = 0
+WHERE `id` = '19544'
+CUSTOM - 2022-11-22 15:05:38 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5400&status=1: []
+ERROR - 2022-11-22 15:05:39 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: call update_date_inventory_not_trigger()
+ERROR - 2022-11-22 15:05:39 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_odd_product` SET `quantity` = 9
+WHERE `product_id` = '1'
+ERROR - 2022-11-22 15:05:39 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_wholesale` SET `quantity` = 375, `processed` = 0
+WHERE `id` = '19544'
+ERROR - 2022-11-22 15:05:39 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_odd_product` SET `quantity` = 10
+WHERE `product_id` = '1'
+ERROR - 2022-11-22 15:05:39 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_wholesale` SET `quantity` = 374, `processed` = 0
+WHERE `id` = '19544'
+ERROR - 2022-11-22 15:05:40 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_odd_product` SET `quantity` = 4
+WHERE `product_id` = '1'
+ERROR - 2022-11-22 15:05:40 --> Query error: Expression #3 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'npptinmi_websys.w.unit' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by - Invalid query: UPDATE `warehouse_wholesale` SET `quantity` = 374, `processed` = 0
+WHERE `id` = '19544'
+ERROR - 2022-11-22 15:37:28 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Users/minhnguyen/Documents/works/npptinminh/backup-npptinminh.com-9-19-2022/public_html/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-11-22 15:37:28 --> Unable to connect to the database

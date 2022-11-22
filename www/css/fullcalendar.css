@@ -33,7 +33,7 @@ html .fc, .fc table {
 	border:4px #a7a4a4 solid;
 	border-bottom:4px #cccccc solid;
 	padding:15px 0;
-	background-image: url(../img/inner-shadow.png);
+	background-image: url(../www/img/inner-shadow.png);
 	text-shadow: 1px 1px 1px #fff;
 }
 /* Header
@@ -481,7 +481,7 @@ table.fc-border-separate {
 
 .fc-grid th {
 	text-align: center;
-	background-repeat: url(../img/inner-shadow.png);
+	background-repeat: url(../www/img/inner-shadow.png);
 }
 .fc-grid .fc-day-number {
 	float: right;

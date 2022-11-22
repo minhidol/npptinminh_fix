@@ -6,9 +6,9 @@
         <!--[if lt IE 9]>
           <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <link type="text/css" rel='stylesheet' href="/www/css/zice.style.css" />
-        <link type="text/css" rel='stylesheet' href="/www/css/icon.css" />
-        <link rel="stylesheet" type="text/css" href="/www/css/tipsy.css" media="all"/>
+        <link type="text/css" rel='stylesheet' href="<?php echo base_url();?>/www/css/zice.style.css" />
+        <link type="text/css" rel='stylesheet' href="<?php echo base_url();?>/www/css/icon.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/www/css/tipsy.css" media="all"/>
         <style type="text/css">
             html {
                 background-image: none;

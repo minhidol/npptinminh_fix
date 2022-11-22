@@ -1,0 +1,9 @@
+ERROR - 2022-10-26 22:00:56 --> Query error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sum(debit) as debt
+FROM `bill`
+WHERE `customer_id` = '1'
+AND `debit` is not null' at line 1 - Invalid query: SELECT SQL_CACHE sum(debit) as debt
+FROM `bill`
+WHERE `customer_id` = '1'
+AND `debit` is not null
+AND `ignor_debit` = '0'
+ERROR - 2022-10-26 22:00:56 --> Severity: error --> Exception: Call to a member function row() on bool /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/models/Bill_model.php 69

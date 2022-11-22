@@ -4,6 +4,7 @@ angular.module('order.controllers', ['ui.bootstrap'])
         function ($scope, $http, $location, showAlert, renderSelect, $filter, productService, $timeout) {
             $scope.selectingorderproducts = [];
             $scope.init = function () {
+                //console.log('init13: ');
                 $scope.currentId = $location.search().i;
                 $scope.lstOrderProduct = [];
                 $scope.totalQuantity = 0;
@@ -11,6 +12,7 @@ angular.module('order.controllers', ['ui.bootstrap'])
                 $scope.currentUserDebit = 0;
                 $scope.saveprocessing = false;
                 $scope.addMoreProcessing = 0;
+                $scope.isLoadedCustomer = false;
                 var d = new Date();
                 $scope.currentDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
                 setDefaultValue();
@@ -28,8 +30,9 @@ angular.module('order.controllers', ['ui.bootstrap'])
                 });
                 $http.get(config.base + '/staff/getAll').then(function (response) {
                     $scope.lstUser = response.data.user;
+                    $scope.isLoadedCustomer = true;
                     $timeout(function () {
-                        $("#select-user").selectpicker();
+                        $("#select-user").selectpicker('refresh');
                     })
                 });
                 var objGetProducts = productService.getProducts();
@@ -62,19 +65,19 @@ angular.module('order.controllers', ['ui.bootstrap'])
                         $('.list_order_product .product_order:last-child .selectpicker').on("changed.bs.select", function() {
                             $(this).parents('tr').find("td:nth-child(2) input").focus();
                         });
+                        // chọn kh
+                        // $("#select-customer").on("changed.bs.select", function() {
+                        //     setTimeout(function (){
+                        //         $("#select-user").selectpicker('toggle');
+                        //     })
+                        // });
+                        
+                        // $("#select-user").on("changed.bs.select", function() {
+                        //     setTimeout(function (){
+                        //         $('.list_order_product .product_order:last-child .selectpicker').selectpicker('toggle');
+                        //     })
 
-                        $("#select-customer").on("changed.bs.select", function() {
-                            setTimeout(function (){
-                                $("#select-user").selectpicker('toggle');
-                            })
-                        });
-
-                        $("#select-user").on("changed.bs.select", function() {
-                            setTimeout(function (){
-                                $('.list_order_product .product_order:last-child .selectpicker').selectpicker('toggle');
-                            })
-
-                        });
+                        // });
                     })
                 });
 
@@ -110,6 +113,7 @@ angular.module('order.controllers', ['ui.bootstrap'])
                 popupWin.document.close();
             }
             $scope.selectCustomer = function () {
+                //console.log('select12');
                 if ($scope.selectedCus) {
                     $scope.currentCustomer = setCustomer();
                     if($scope.selectedCus) {
@@ -117,7 +121,16 @@ angular.module('order.controllers', ['ui.bootstrap'])
                             $scope.currentUserDebit = data.debit;
                         })
                     }
+                    setTimeout(function (){
+                        $("#select-user").selectpicker('toggle');
+                    })
                 }
+            };
+            $scope.selectSaler = function () {
+                setTimeout(function (){
+                     $('.list_order_product .product_order:last-child .selectpicker').selectpicker('toggle');
+                })
+               //console.log('selec saler123');
             };
             $scope.selectUnit = function () {
                 var target_id = $(event.currentTarget).closest('tr').data('id');
@@ -216,18 +229,19 @@ angular.module('order.controllers', ['ui.bootstrap'])
                 $scope.order.saler = $scope.selectedUser;
                 var url = config.base;
                 url += ($scope.currentId == undefined) ? '/order/addOrder' : '/order/update';
+               //console.log('body: ', $scope.order);
                 $http({
                     method: 'POST',
                     url: url,
                     data: $scope.order,
                     responseType: 'json'
                 }).success(function (data, status) {
+                    //console.log('data: ', data);
                     showAlert.showSuccess(3000, 'Lưu thành công');
                     if ( $scope.currentId ) {
                         setTimeout(function(){
                             window.location.href = config.base + '/dashboard#order-list';
                         }, 1000);
-
                     } else {
                         $scope.init();
                         $('#select-customer').val("");
@@ -235,11 +249,13 @@ angular.module('order.controllers', ['ui.bootstrap'])
                         $('#select-user').val("");
                         $('#select-user').selectpicker("refresh");
                         $scope.saveprocessing = false;
+                        
                     }
                 }).error(function (data, status) {
                     console.log(data);
                     $scope.saveprocessing = false;
                 });
+                $scope.saveprocessing = false;
             };
 
             $scope.checkPromotion = function () {
@@ -403,6 +419,7 @@ angular.module('order.controllers', ['ui.bootstrap'])
             }
 
             function loadOrder() {
+                //console.log('123123');
                 $http.get(config.base + '/order/get?i=' + $scope.currentId).then(function (response) {
                     for (var i = 0; i < response.data.order_detail.length; i++) {
                         $scope.lstOrderProduct.push({
@@ -431,6 +448,7 @@ angular.module('order.controllers', ['ui.bootstrap'])
             }
 
             function setCustomer() {
+                //console.log('customer: ', $scope.lstCustomer)
                 if ($scope.lstCustomer != undefined) {
                     for (var i = 0; i < $scope.lstCustomer.length; i++) {
                         if ($scope.lstCustomer[i].id == $scope.selectedCus) {
@@ -828,6 +846,25 @@ angular.module('order.controllers', ['ui.bootstrap'])
                         $scope.init()
                 })
             }
+            $scope.saveOrderForDivideProduct = function(){
+                const arrNotValid = [];
+                $.each($scope.productList.detail, function(i, value){
+                    if(value.total_quantity > value.inventory){
+                        arrNotValid.push(value.product_name)
+                    }
+                });
+                if(arrNotValid.length > 0){
+                    const messError = `Các mặt hàng sau không đủ hàng tồn kho: ${arrNotValid.join(', ')}. Vui lòng kiểm tra lại.`;
+                    showMessage('error', messError);
+                    return 0;
+                }
+                var postData = $scope.preparePostData();
+                $http.post(config.base + '/order/saveDevided', postData)
+                    .success(function (data, status) {
+                        showAlert.showSuccess(3000, 'Lưu thành công');
+                    });
+
+            }
             $scope.divideProduct = function (shouldReload) {
                 $scope.saveOrder();
                 $http.post(config.base + '/order/updateWarehouse?ship_id=' + $stateParams.shipment_id, $scope.shipment)
@@ -1078,7 +1115,6 @@ angular.module('order.controllers', ['ui.bootstrap'])
                 showAlert.showError(3000, "Chưa in hóa đơn!");
                 return false;
             }
-
             //change button and css
             switch (status) {
                 case 0:
@@ -1421,12 +1457,18 @@ angular.module('order.controllers', ['ui.bootstrap'])
             $location.path('order-divide/' + id + "?disabled=1");
         };
         $scope.inhoadon = function (shipment_id) {
+            //console.log('213')
             $("body").css("cursor", "progress");
             $http({
                 method: 'GET',
                 url: config.base + '/order/getOrderByShipment?i=' + shipment_id + '&d=1',
                 responseType: 'json'
             }).success(function (data, status) {
+                $scope.printData = [];
+                for(var i = 0; i < data.length; i++){
+                    var phone_string = JSON.parse(data[i].customer_phone);
+                    data[i].list_phone_customer = phone_string.join(',');
+                }
                 $scope.printData = data;
                 var currentshipment = null;
                 for(var i=0; i<$scope.shipments.length;i++){
@@ -1446,6 +1488,7 @@ angular.module('order.controllers', ['ui.bootstrap'])
                         }
                     }
                 }
+                //console.log($scope.printData)
                 setTimeout(function () {
                     processPrinting();
                     $("body").css("cursor", "default");
@@ -1565,7 +1608,9 @@ angular.module('order.controllers', ['ui.bootstrap'])
         }
 
         function processPrinting() {
+            console.log('1111')
             $("#print-area").show();
+            console.log('element: ', document.getElementById("print-area"));
             productService.printElement(document.getElementById("print-area"));
             window.print();
             $("#print-area").hide();

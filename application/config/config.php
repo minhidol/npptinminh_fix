@@ -14,8 +14,10 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'https://www.npptinminh.com';
-
+#$config['base_url']	= 'http://118.69.111.40:8003/';
+#$config['base_url']	= 'http://118.69.111.40:8003/npptinminh/';
+$config['base_url']	= 'http://localhost:8888/';
+#$config['base_url']	= 'https://www.npptinminh.com';
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -129,7 +131,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = FALSE;
+$config['composer_autoload'] = FCPATH.'vendor/autoload.php';;
 
 /*
 |--------------------------------------------------------------------------

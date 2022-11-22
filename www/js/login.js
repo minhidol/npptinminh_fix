@@ -33,6 +33,7 @@ $('#but_login').click(function (e) {
         data: $('#formLogin').serialize(),
         dataType: 'json',
         success: function(data){
+            //console.log('data: ', data)
             if(data.status == 'success'){
                 hideTop();
                 loading('Checking', 1);

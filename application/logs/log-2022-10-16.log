@@ -1,0 +1,80 @@
+ERROR - 2022-10-16 22:02:31 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:02:31 --> Unable to connect to the database
+ERROR - 2022-10-16 22:02:53 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:02:53 --> Unable to connect to the database
+ERROR - 2022-10-16 22:03:32 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:03:32 --> Unable to connect to the database
+ERROR - 2022-10-16 22:05:04 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:05:04 --> Unable to connect to the database
+ERROR - 2022-10-16 22:06:02 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:06:02 --> Unable to connect to the database
+ERROR - 2022-10-16 22:06:49 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:06:49 --> Unable to connect to the database
+ERROR - 2022-10-16 22:07:40 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:07:40 --> Unable to connect to the database
+ERROR - 2022-10-16 22:28:26 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:28:26 --> Unable to connect to the database
+ERROR - 2022-10-16 22:29:51 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:29:51 --> Unable to connect to the database
+ERROR - 2022-10-16 22:30:01 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:30:01 --> Unable to connect to the database
+ERROR - 2022-10-16 22:30:07 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:30:07 --> Unable to connect to the database
+ERROR - 2022-10-16 22:30:24 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:30:24 --> Unable to connect to the database
+ERROR - 2022-10-16 22:30:25 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:30:25 --> Unable to connect to the database
+ERROR - 2022-10-16 22:31:45 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:31:45 --> Unable to connect to the database
+ERROR - 2022-10-16 22:32:01 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:32:01 --> Unable to connect to the database
+ERROR - 2022-10-16 22:34:36 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:34:36 --> Unable to connect to the database
+ERROR - 2022-10-16 22:36:45 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:36:45 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:11 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:11 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:13 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:13 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:13 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:13 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:13 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:13 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:13 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:13 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:13 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:13 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:14 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:14 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:52 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:52 --> Unable to connect to the database
+ERROR - 2022-10-16 22:37:52 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:37:52 --> Unable to connect to the database
+ERROR - 2022-10-16 22:38:06 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'npptinmi_websys'@'localhost' (using password: YES) /Applications/MAMP/htdocs/source_php/system/database/drivers/mysqli/mysqli_driver.php 201
+ERROR - 2022-10-16 22:38:06 --> Unable to connect to the database

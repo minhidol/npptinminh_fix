@@ -1,0 +1,4 @@
+ERROR - 2022-10-20 08:37:12 --> Severity: Warning --> mkdir(): Invalid path /Applications/MAMP/htdocs/system/libraries/Session/drivers/Session_files_driver.php 136
+ERROR - 2022-10-20 08:37:12 --> Severity: error --> Exception: Session: Configured save path '' is not a directory, doesn't exist or cannot be created. /Applications/MAMP/htdocs/system/libraries/Session/drivers/Session_files_driver.php 138
+ERROR - 2022-10-20 08:49:24 --> Severity: Warning --> mkdir(): Invalid path /Applications/MAMP/htdocs/system/libraries/Session/drivers/Session_files_driver.php 136
+ERROR - 2022-10-20 08:49:24 --> Severity: error --> Exception: Session: Configured save path '' is not a directory, doesn't exist or cannot be created. /Applications/MAMP/htdocs/system/libraries/Session/drivers/Session_files_driver.php 138

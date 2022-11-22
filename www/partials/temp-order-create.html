@@ -21,7 +21,9 @@
 
                     <div class="col-sm-12 col-md-6">
                         <label>Chọn saler</label>
-                        <select class="form-control selectpicker" data-live-search="true" ng-model="selectedUser" id="select-user"
+                        <select class="form-control selectpicker" data-live-search="true" 
+                                *ngIf="isLoadedCustomer"
+                                ng-model="selectedUser" id="select-user" ng-change="selectSaler()"
                                 ng-options="user.id as user.name for user in lstUser" tabindex="2">
                             <option style="display:none" value="">-- Chọn Saler --</option>
                         </select>
@@ -31,16 +33,18 @@
                 <table class="table">
                     <thead>
                     <th>Tên khách hàng</th>
+                    <th>Cửa hàng</th>
                     <th>Địa chỉ</th>
-                    <th>Di động</th>
-                    <th>Điện thoại bàn</th>
+                    <!-- <th>Di động</th> -->
+                    <th>Điện thoại</th>
                     <th>Tổng nợ</th>
                     </thead>
                     <tbody>
                     <tr>
                         <td>{{currentCustomer.name}}</td>
+                        <td>{{currentCustomer.store_name}}</td>
                         <td>{{currentCustomer.address}}</td>
-                        <td>{{currentCustomer.phone_mobile}}</td>
+                        <!-- <td>{{currentCustomer.phone_mobile}}</td> -->
                         <td>{{currentCustomer.phone_home}}</td>
                         <td>{{currentCustomer.total_debt.debt | number}} - <a
                                 href="#total-debit-customer/{{currentCustomer.id}}" target="_blank">Xem chi tiết</a></td>

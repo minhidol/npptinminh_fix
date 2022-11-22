@@ -119,6 +119,7 @@ angular.module('dashboard.controllers', ['ui.bootstrap'])
                 parent_id: '',
                 unit: ''
             }];
+            $scope.activeSaveProduct = false;
             var objGetProductType = productService.getProductTypes();
             objGetProductType.then(function (data) {
                 $scope.lstProductType = data.product_type;
@@ -203,6 +204,7 @@ angular.module('dashboard.controllers', ['ui.bootstrap'])
             }
         }
         $scope.createProduct = function (el) {
+            $scope.activeSaveProduct = true;
             var list_price = new Array();
             for (var i = 0; i < $scope.product.sale_price.length; i++) {
                 if ($scope.product.sale_price[i].quantity != null) {
@@ -231,15 +233,18 @@ angular.module('dashboard.controllers', ['ui.bootstrap'])
             if ($scope.product.alias != '' && $scope.product.alias != null) {
                 product['alias'] = angular.copy($scope.product.alias);
             }
-
-            $(el.currentTarget).find('[type=submit]').attr('value', 'loading...')
+            $(el.currentTarget).find('[type=submit]').attr('value', 'loading...');
+            //console.log('url: ', $scope.urlSave);
+            console.log('product: ', $scope.product);
             $http({
                 method: 'post',
                 url: $scope.urlSave,
                 data: product,
                 responseType: 'json'
             }).success(function (data, status) {
+                console.log('data3: ', data);
                 showAlert.showSuccess(3000, 'Lưu thành công');
+                $scope.activeSaveProduct = true;
                 $(el.currentTarget).find('[type=submit]').attr('value', 'Save')
                 $location.path('product');
             }).error(function (data, status) {
@@ -2171,7 +2176,7 @@ angular.module('dashboard.controllers', ['ui.bootstrap'])
             })
             $scope.customer.phone_home = phone_home;
             $scope.customer.phone_mobile = phone_mobile;
-
+            //console.log('customer: ', $scope.customer)
             $http({
                 method: 'POST',
                 url: url,

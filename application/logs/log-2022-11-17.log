@@ -1,0 +1,206 @@
+ERROR - 2022-11-17 11:09:17 --> Severity: Warning --> require_once(/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Cache/drivers/Cache_redis/Cache_redis.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 319
+ERROR - 2022-11-17 11:09:17 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 11:09:17 --> Severity: Compile Error --> require_once(): Failed opening required '/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Cache/drivers/Cache_redis/Cache_redis.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 319
+ERROR - 2022-11-17 11:09:55 --> Severity: Warning --> require_once(/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Cache/drivers/Cache_redis.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 319
+ERROR - 2022-11-17 11:09:55 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 11:09:55 --> Severity: Compile Error --> require_once(): Failed opening required '/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Cache/drivers/Cache_redis.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 319
+ERROR - 2022-11-17 11:09:56 --> Severity: Warning --> require_once(/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Cache/drivers/Cache_redis.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 319
+ERROR - 2022-11-17 11:09:56 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 11:09:56 --> Severity: Compile Error --> require_once(): Failed opening required '/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Cache/drivers/Cache_redis.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 319
+ERROR - 2022-11-17 11:09:56 --> Severity: Warning --> require_once(/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Cache/drivers/Cache_redis.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 319
+ERROR - 2022-11-17 11:09:56 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 11:09:56 --> Severity: Compile Error --> require_once(): Failed opening required '/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Cache/drivers/Cache_redis.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 319
+ERROR - 2022-11-17 11:10:30 --> Severity: error --> Exception: Class 'CI_Driver' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 49
+ERROR - 2022-11-17 11:10:30 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 11:10:58 --> Severity: error --> Exception: Class 'CI_Driver' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 49
+ERROR - 2022-11-17 11:10:58 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 11:26:43 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:26:43 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:30:58 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:30:58 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:30:58 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:30:58 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:30:59 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:30:59 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:30:59 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:30:59 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:30:59 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:30:59 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:31:00 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:31:00 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:31:00 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:31:00 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:31:00 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:31:00 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:31:00 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:31:00 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:31:00 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:31:00 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:36:26 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:36:26 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:36:27 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:36:27 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:36:28 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:36:28 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:36:28 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:36:28 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:36:28 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:36:28 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:36:28 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:36:28 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:36:29 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:36:29 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:36:29 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:36:29 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:43:55 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:43:55 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:43:55 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:43:55 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:43:56 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:43:56 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:43:56 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:43:56 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 11:43:57 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 11:43:57 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:10:06 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:10:06 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:17:54 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:17:54 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:18:25 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:18:25 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:18:26 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:18:26 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:18:26 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:18:26 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:18:26 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:18:26 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:24:37 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:24:37 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:24:43 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:24:43 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:24:45 --> 404 Page Not Found: Redis/index1
+ERROR - 2022-11-17 14:24:48 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:24:48 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:30:56 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:30:56 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:31:01 --> Session: No Redis save path configured.
+ERROR - 2022-11-17 14:31:01 --> Severity: Warning --> ini_set(): A session is active. You cannot change the session module's ini settings at this time /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Session/Session_driver.php 188
+ERROR - 2022-11-17 14:31:01 --> Severity: Warning --> session_start(): Failed to initialize storage module: user (path: /Applications/MAMP/tmp/php) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Session/Session.php 143
+ERROR - 2022-11-17 14:31:01 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:31:01 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:31:30 --> Session: No Redis save path configured.
+ERROR - 2022-11-17 14:31:30 --> Severity: Warning --> ini_set(): A session is active. You cannot change the session module's ini settings at this time /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Session/Session_driver.php 188
+ERROR - 2022-11-17 14:31:30 --> Severity: Warning --> session_start(): Failed to initialize storage module: user (path: /Applications/MAMP/tmp/php) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Session/Session.php 143
+ERROR - 2022-11-17 14:31:30 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:31:30 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:48:36 --> Cache: Failed to create Redis object; extension not loaded?
+ERROR - 2022-11-17 14:48:36 --> Severity: error --> Exception: Call to a member function set() on null /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/libraries/Cache/drivers/Cache_redis.php 193
+ERROR - 2022-11-17 14:48:50 --> 404 Page Not Found: Test_redis/index
+ERROR - 2022-11-17 14:49:00 --> Severity: error --> Exception: Call to undefined method Redis::set() /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/controllers/Welcome.php 32
+ERROR - 2022-11-17 14:54:20 --> Severity: error --> Exception: syntax error, unexpected 'return' (T_RETURN), expecting function (T_FUNCTION) or const (T_CONST) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 12
+ERROR - 2022-11-17 14:54:40 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 14:54:42 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:04:26 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:04:27 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:04:28 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:04:28 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:05:19 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:05:20 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:05:20 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:05:20 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:05:20 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:05:20 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:05:20 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:35 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:35 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:35 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:36 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:36 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:36 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:36 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:36 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:36 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:37 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:07:40 --> Severity: Warning --> require_once(Predis/Autoloader.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:07:40 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 15:07:40 --> Severity: Compile Error --> require_once(): Failed opening required 'Predis/Autoloader.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:08:01 --> Severity: Warning --> require(Predis/Autoloader.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:08:01 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 15:08:01 --> Severity: Compile Error --> require(): Failed opening required 'Predis/Autoloader.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:08:11 --> Severity: Warning --> require(/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/Predis/Autoloader.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:08:11 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 15:08:11 --> Severity: Compile Error --> require(): Failed opening required '/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/Predis/Autoloader.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:08:45 --> Severity: Warning --> require(Predis/Autoloader.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:08:45 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 15:08:45 --> Severity: Compile Error --> require(): Failed opening required 'Predis/Autoloader.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:09:50 --> Severity: Warning --> require(/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptinvendor/predis/predis/src/Autoloader.php): failed to open stream: No such file or directory /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:09:50 --> Severity: Warning --> Cannot modify header information - headers already sent by (output started at /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Output.php:538) /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/system/core/Common.php 570
+ERROR - 2022-11-17 15:09:50 --> Severity: Compile Error --> require(): Failed opening required '/Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptinvendor/predis/predis/src/Autoloader.php' (include_path='.:/Applications/MAMP/bin/php/php7.4.21/lib/php') /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/index.php 318
+ERROR - 2022-11-17 15:10:18 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:22:52 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/predis/predis/autoload.php
+ERROR - 2022-11-17 15:22:57 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/predis/predis/autoload.php
+ERROR - 2022-11-17 15:23:00 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/predis/predis/autoload.php
+ERROR - 2022-11-17 15:23:08 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/predis/predis/autoload.php
+ERROR - 2022-11-17 15:23:08 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:11 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/predis/predis/autoload.php
+ERROR - 2022-11-17 15:23:11 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:11 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/predis/predis/autoload.php
+ERROR - 2022-11-17 15:23:11 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:11 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/predis/predis/autoload.php
+ERROR - 2022-11-17 15:23:11 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:11 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/predis/predis/autoload.php
+ERROR - 2022-11-17 15:23:11 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:47 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:48 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:48 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:48 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:51 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:51 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:51 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:52 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:23:52 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:29:24 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/vendor
+ERROR - 2022-11-17 15:29:24 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:29:25 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/vendor
+ERROR - 2022-11-17 15:29:25 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:29:25 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/vendor
+ERROR - 2022-11-17 15:29:25 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 15:29:26 --> Could not find the specified $config['composer_autoload'] path: /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/vendor
+ERROR - 2022-11-17 15:29:26 --> Severity: error --> Exception: Class 'Predis\Client' not found /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/libraries/Redis.php 5
+ERROR - 2022-11-17 16:24:01 --> Severity: error --> Exception: syntax error, unexpected '}', expecting ';' or ',' /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/application/controllers/Staff.php 62
+ERROR - 2022-11-17 16:27:25 --> Severity: Notice --> Array to string conversion /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/vendor/predis/predis/src/Connection/StreamConnection.php 363
+ERROR - 2022-11-17 16:27:25 --> Severity: Notice --> Array to string conversion /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/vendor/predis/predis/src/Connection/StreamConnection.php 364
+CUSTOM - 2022-11-17 16:36:20 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:36:30 --> Staff::editStaff - /index.php/staff/editStaff?id=1: {"id":"1","name":"Sang Ace123","cmnd":"","dob":"0000-00-00","avatar":null,"fatherland":"H\u1ed3 Ch\u00ed Minh","address_permanent":"","address_temporary":"","salary":"0","start_day":"0000-00-00","end_day":null,"sex":"1","position":"1","active":"0"}
+ERROR - 2022-11-17 16:36:30 --> Severity: error --> Exception: Command `DELETE` is not a registered Redis command. /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/vendor/predis/predis/src/Command/Factory.php 69
+CUSTOM - 2022-11-17 16:36:51 --> Staff::editStaff - /index.php/staff/editStaff?id=1: {"id":"1","name":"Sang Ace123","cmnd":"","dob":"0000-00-00","avatar":null,"fatherland":"H\u1ed3 Ch\u00ed Minh","address_permanent":"","address_temporary":"","salary":"0","start_day":"0000-00-00","end_day":null,"sex":"1","position":"1","active":"0"}
+ERROR - 2022-11-17 16:36:51 --> Severity: error --> Exception: Command `DELETE` is not a registered Redis command. /Users/minhnguyen/Documents/works/npptinminh/staging-dev-npptin/vendor/predis/predis/src/Command/Factory.php 69
+CUSTOM - 2022-11-17 16:37:19 --> Staff::editStaff - /index.php/staff/editStaff?id=1: {"id":"1","name":"Sang Ace123","cmnd":"","dob":"0000-00-00","avatar":null,"fatherland":"H\u1ed3 Ch\u00ed Minh","address_permanent":"","address_temporary":"","salary":"0","start_day":"0000-00-00","end_day":null,"sex":"1","position":"1","active":"0"}
+CUSTOM - 2022-11-17 16:37:19 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:37:27 --> Staff::editStaff - /index.php/staff/editStaff?id=1: {"id":"1","name":"Sang Ace345","cmnd":"","dob":"0000-00-00","avatar":null,"fatherland":"H\u1ed3 Ch\u00ed Minh","address_permanent":"","address_temporary":"","salary":"0","start_day":"0000-00-00","end_day":null,"sex":"1","position":"1","active":"0"}
+CUSTOM - 2022-11-17 16:37:27 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:39:06 --> Staff::createStaff - /index.php/staff/createStaff: {"name":"minh","dob":"12-12-2012","cmnd":"123123123","sex":"1"}
+CUSTOM - 2022-11-17 16:39:06 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:39:41 --> Staff::createStaff - /index.php/staff/createStaff: {"name":"vietcn","dob":"2012-12-12","cmnd":"123123123","position":"2"}
+CUSTOM - 2022-11-17 16:39:41 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:40:01 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:40:06 --> Staff::editStaff - /index.php/staff/editStaff?id=3: {"id":"3","name":"Chinh Ace12","cmnd":null,"dob":null,"avatar":null,"fatherland":null,"address_permanent":null,"address_temporary":null,"salary":null,"start_day":null,"end_day":null,"sex":"0","position":"1","active":"0"}
+CUSTOM - 2022-11-17 16:40:06 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:41:07 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:41:12 --> Staff::delete - /index.php/staff/delete: {"id":"3"}
+CUSTOM - 2022-11-17 16:41:12 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:43:20 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:43:29 --> Staff::editStaff - /index.php/staff/editStaff?id=2: {"id":"2","name":"Ho\u00e0ng Ace12","cmnd":null,"dob":null,"avatar":null,"fatherland":"B\u00ecnh T\u00e2n","address_permanent":null,"address_temporary":null,"salary":null,"start_day":null,"end_day":null,"sex":"1","position":"1","active":"0"}
+CUSTOM - 2022-11-17 16:43:29 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:49:01 --> Staff::delete - /index.php/staff/delete: {"id":"10"}
+CUSTOM - 2022-11-17 16:49:01 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:49:04 --> Staff::editStaff - /index.php/staff/editStaff?id=5: {"id":"5","name":"A H\u00f9ng1","cmnd":null,"dob":null,"avatar":null,"fatherland":null,"address_permanent":null,"address_temporary":null,"salary":null,"start_day":null,"end_day":null,"sex":"1","position":"2","active":"0"}
+CUSTOM - 2022-11-17 16:49:04 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 16:49:14 --> Staff::createStaff - /index.php/staff/createStaff: {"name":"1","dob":"1234-12-12"}
+CUSTOM - 2022-11-17 16:49:14 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-11-17 17:05:37 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-17 17:05:53 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-17 17:06:51 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5160&status=1: []
+CUSTOM - 2022-11-17 17:07:03 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5400&status=1: []
+CUSTOM - 2022-11-17 17:07:49 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5400&status=1: []
+CUSTOM - 2022-11-17 17:11:14 --> Order::updateStatusShipment - /index.php/order/updateStatusShipment?shipment_id=5402&status=1: []

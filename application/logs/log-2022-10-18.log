@@ -1,0 +1,86 @@
+CUSTOM - 2022-10-18 09:49:24 --> Promotion::getByOrder - /index.php/promotion/getByOrder: {"totalValue":420000,"detail":[{"id":"1","quantity":4}]}
+CUSTOM - 2022-10-18 09:49:26 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"1","cost":null,"unit":"","price":105000,"quantity":4,"total":"1"}],"total_price":420000,"customer_id":"1","saler":"1"}
+CUSTOM - 2022-10-18 09:57:34 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 09:58:39 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"2","cost":null,"unit":"","price":105000,"quantity":5,"total":"2"}],"total_price":525000,"customer_id":"3","saler":"1"}
+CUSTOM - 2022-10-18 09:58:50 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:26:01 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:26:15 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:26:33 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:26:49 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:26:51 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:27:07 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:27:19 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:27:36 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:28:11 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:28:25 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:28:47 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:29:29 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:31:55 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"1","cost":null,"unit":"","price":105000,"quantity":12,"total":"1"}],"total_price":1260000,"customer_id":"11","saler":"4"}
+CUSTOM - 2022-10-18 10:32:05 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:32:30 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 10:37:53 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 11:57:43 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:00:39 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:18:54 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:19:05 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:19:06 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:23:51 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:38:31 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:43:04 --> Staff::index - /index.php/staff: null
+CUSTOM - 2022-10-18 12:44:00 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"1","cost":null,"unit":"","price":105000,"quantity":500,"total":"1"},{"product_id":"10","cost":null,"unit":"","price":211000,"quantity":100,"total":"10"}],"total_price":73600000,"customer_id":"12","saler":"2"}
+CUSTOM - 2022-10-18 12:44:10 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:47:50 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:49:41 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:53:13 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 12:56:40 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 13:02:20 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 13:27:05 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 13:31:21 --> Products::editProduct - /index.php/products/editProduct?id=242: {"name":"B\u1ed9t ng\u1ecdt 1kg","code":null,"description":null,"sale_unit":"1","primary_unit":"1","conversion_rate":1,"product_type":"7","list_price":[{"id":"1488","product_id":"242","parent_id":null,"name":"Th\u00f9ng","description":null,"quantity":"2","price":"745000","unit":"1"}]}
+ERROR - 2022-10-18 13:31:21 --> Query error: TRIGGER command denied to user 'npptinmi'@'localhost' for table 'warehouse_wholesale' - Invalid query: UPDATE `warehouse_wholesale` SET `unit` = '1741'
+WHERE `product_id` = '242'
+CUSTOM - 2022-10-18 13:38:06 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 13:38:55 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"3","cost":null,"unit":"","price":105000,"quantity":12,"total":"3"}],"total_price":1260000,"customer_id":"17","saler":"1"}
+CUSTOM - 2022-10-18 13:39:05 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 13:39:57 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 13:40:12 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 13:55:50 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 15:43:38 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 16:07:15 --> Promotion::getByOrder - /index.php/promotion/getByOrder: {"totalValue":10500000,"detail":[{"id":"3","quantity":100}]}
+CUSTOM - 2022-10-18 16:07:17 --> Promotion::getByOrder - /index.php/promotion/getByOrder: {"totalValue":10500000,"detail":[{"id":"3","quantity":100}]}
+CUSTOM - 2022-10-18 16:07:19 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"3","cost":null,"unit":"","price":105000,"quantity":100,"total":"3"}],"total_price":10500000,"customer_id":"11","saler":"1"}
+CUSTOM - 2022-10-18 16:07:29 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 16:09:49 --> Promotion::getByOrder - /index.php/promotion/getByOrder: {"totalValue":4212000,"detail":[{"id":"101","quantity":12},{"id":"","quantity":null}]}
+CUSTOM - 2022-10-18 16:10:15 --> Warehouse_wholesale::saveAddWholesale - /index.php/warehouse_wholesale/saveAddWholesale: {"partner":"1","total_bill":2066040,"actual":0,"debt":null,"buy_price":[{"product_id":"14","quantity":10,"unit":"1","price":"206604"}],"warehouseid":"1"}
+ERROR - 2022-10-18 16:10:15 --> Query error: TRIGGER command denied to user 'npptinmi'@'localhost' for table 'warehouse_wholesale' - Invalid query: INSERT INTO `warehouse_wholesale` (`product_id`, `quantity`, `unit`, `warehouse_id`, `date`, `price`) VALUES ('14', 10, '1', '1', '2022-10-18 16:10:15', '206604')
+CUSTOM - 2022-10-18 16:13:18 --> Promotion::getByOrder - /index.php/promotion/getByOrder: {"totalValue":5520000,"detail":[{"id":"2","quantity":12},{"id":"12","quantity":10},{"id":"15","quantity":10}]}
+CUSTOM - 2022-10-18 16:15:37 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"12","cost":null,"unit":"","price":211000,"quantity":123,"total":"12"}],"total_price":25953000,"customer_id":"29","saler":"2"}
+CUSTOM - 2022-10-18 16:15:47 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 16:50:44 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"12","cost":null,"unit":"","price":202176,"quantity":50,"total":"12"},{"product_id":"13","cost":null,"unit":"","price":206604,"quantity":50,"total":"13"},{"product_id":"14","cost":null,"unit":"","price":206604,"quantity":100,"total":"14"},{"product_id":"15","cost":null,"unit":"","price":206604,"quantity":150,"total":"15"}],"total_price":72090000,"customer_id":"1262","saler":"11"}
+CUSTOM - 2022-10-18 16:53:08 --> Order::createShipment - /index.php/order/createShipment: {"order":[{"id":"47106","customer_id":"1262","total_price":"72090000","delivery":"0","status":"2","shipment_id":null,"created":"2022-10-18 16:50:44","note":"","order_code":"CH000047106","saler":"11","driver":null,"sub_driver":null,"saler_name":"A T\u00edn","customer_name":"Ch\u1ecb Chinh Ace","customer_address":"Ch\u1ecb Chinh Ace","customer_phone":"[]","total_box":350}],"id":0,"truck":"3","date":"2022-10-18 00:00:00","index":1}
+CUSTOM - 2022-10-18 16:53:10 --> Order::createShipment - /index.php/order/createShipment: {"order":[{"id":"47106","customer_id":"1262","total_price":"72090000","delivery":"0","status":"2","shipment_id":null,"created":"2022-10-18 16:50:44","note":"","order_code":"CH000047106","saler":"11","driver":null,"sub_driver":null,"saler_name":"A T\u00edn","customer_name":"Ch\u1ecb Chinh Ace","customer_address":"Ch\u1ecb Chinh Ace","customer_phone":"[]","total_box":350}],"id":5403,"truck":"3","date":"2022-10-18 00:00:00","index":1}
+CUSTOM - 2022-10-18 16:53:15 --> Order::saveDevided - /index.php/order/saveDevided: [{"id":"306037","quantity":50},{"id":"306038","quantity":50},{"id":"306039","quantity":100},{"id":"306040","quantity":150}]
+CUSTOM - 2022-10-18 16:53:15 --> Order::updateWarehouse - /index.php/order/updateWarehouse?ship_id=5403: {"info":{"id":"5403","truck_id":"3","driver":"0","sub_driver":["0"],"created":"2022-10-18 16:53:08","allow":"0","status":"0","date":null,"index":"1","note":null,"order_detail":[{"id":"47106","customer_id":"1262","total_price":"72090000","delivery":"0","status":"2","shipment_id":"5403","created":"2022-10-18 16:50:44","note":"","order_code":"CH000047106","saler":"11","old_debit":"0","last_bill":"0"}],"truck_name":"Xe3G-2953"},"truck_id":"3","driver":"0","sub_driver":["0"]}
+CUSTOM - 2022-10-18 16:53:16 --> Order::saveDevided - /index.php/order/saveDevided: [{"id":"306037","quantity":50},{"id":"306038","quantity":50},{"id":"306039","quantity":100},{"id":"306040","quantity":150}]
+CUSTOM - 2022-10-18 16:53:16 --> Order::updateWarehouse - /index.php/order/updateWarehouse?ship_id=5403: {"info":{"id":"5403","truck_id":"3","driver":"0","sub_driver":["0"],"created":"2022-10-18 16:53:08","allow":"0","status":"0","date":null,"index":"1","note":null,"order_detail":[{"id":"47106","customer_id":"1262","total_price":"72090000","delivery":"0","status":"2","shipment_id":"5403","created":"2022-10-18 16:50:44","note":"","order_code":"CH000047106","saler":"11","old_debit":"0","last_bill":"0"}],"truck_name":"Xe3G-2953"},"truck_id":"3","driver":"0","sub_driver":["0"]}
+CUSTOM - 2022-10-18 16:53:21 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 17:13:34 --> Order::addOrder - /index.php/order/addOrder: {"note":"","lstProId":[],"orders":[{"product_id":"1","cost":null,"unit":"","price":98000,"quantity":7,"total":"1"},{"product_id":"2","cost":null,"unit":"","price":98000,"quantity":1,"total":"2"},{"product_id":"324","cost":null,"unit":"","price":207000,"quantity":1,"total":"324"},{"product_id":"32","cost":null,"unit":"","price":177000,"quantity":1,"total":"32"},{"product_id":"28","cost":null,"unit":"","price":189000,"quantity":1,"total":"28"}],"total_price":1357000,"customer_id":"24","saler":"3"}
+CUSTOM - 2022-10-18 17:15:08 --> Order::createShipment - /index.php/order/createShipment: {"order":[{"id":"47107","customer_id":"24","total_price":"1357000","delivery":"0","status":"2","shipment_id":null,"created":"2022-10-18 17:13:34","note":"","order_code":"CH000047107","saler":"3","driver":null,"sub_driver":null,"saler_name":"Chinh Ace","customer_name":"L\u00ea Ph\u01b0\u1edbc B\u1ea3o Long","customer_address":"12B CC V\u01b0\u1eddn L\u00e0i","customer_phone":"[\"0918305524\"]","total_box":11}],"id":0,"truck":"3","date":"2022-10-18 00:00:00","index":2}
+CUSTOM - 2022-10-18 17:15:10 --> Order::createShipment - /index.php/order/createShipment: {"order":[{"id":"47107","customer_id":"24","total_price":"1357000","delivery":"0","status":"2","shipment_id":null,"created":"2022-10-18 17:13:34","note":"","order_code":"CH000047107","saler":"3","driver":null,"sub_driver":null,"saler_name":"Chinh Ace","customer_name":"L\u00ea Ph\u01b0\u1edbc B\u1ea3o Long","customer_address":"12B CC V\u01b0\u1eddn L\u00e0i","customer_phone":"[\"0918305524\"]","total_box":11}],"id":5404,"truck":"3","date":"2022-10-18 00:00:00","index":2}
+CUSTOM - 2022-10-18 17:15:12 --> Order::saveDevided - /index.php/order/saveDevided: [{"id":"306041","quantity":7},{"id":"306042","quantity":1},{"id":"306045","quantity":1},{"id":"306044","quantity":1},{"id":"306043","quantity":1}]
+CUSTOM - 2022-10-18 17:15:12 --> Order::updateWarehouse - /index.php/order/updateWarehouse?ship_id=5404: {"info":{"id":"5404","truck_id":"3","driver":"0","sub_driver":["0"],"created":"2022-10-18 17:15:08","allow":"0","status":"0","date":null,"index":"2","note":null,"order_detail":[{"id":"47107","customer_id":"24","total_price":"1357000","delivery":"0","status":"2","shipment_id":"5404","created":"2022-10-18 17:13:34","note":"","order_code":"CH000047107","saler":"3","old_debit":"0","last_bill":"0"}],"truck_name":"Xe3G-2953"},"truck_id":"3","driver":"0","sub_driver":["0"]}
+CUSTOM - 2022-10-18 17:18:55 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 17:19:31 --> Order::update - /index.php/order/update: {"note":"","lstProId":[],"id":"47107","orders":[{"product_id":"1","cost":1,"unit":"","price":98000,"quantity":3,"total":"1"},{"product_id":"2","cost":2,"unit":"","price":98000,"quantity":1,"total":"2"},{"product_id":"28","cost":31,"unit":"","price":189000,"quantity":1,"total":"28"},{"product_id":"32","cost":38,"unit":"","price":177000,"quantity":1,"total":"32"},{"product_id":"324","cost":14266,"unit":"","price":207000,"quantity":1,"total":"324"}],"total_price":965000,"customer_id":"24","saler":"3"}
+ERROR - 2022-10-18 17:19:31 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /Applications/MAMP/htdocs/application/controllers/Order.php 1583
+ERROR - 2022-10-18 17:19:31 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /Applications/MAMP/htdocs/application/controllers/Order.php 1583
+ERROR - 2022-10-18 17:19:31 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /Applications/MAMP/htdocs/application/controllers/Order.php 1583
+ERROR - 2022-10-18 17:19:31 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /Applications/MAMP/htdocs/application/controllers/Order.php 1583
+ERROR - 2022-10-18 17:19:31 --> Severity: Warning --> count(): Parameter must be an array or an object that implements Countable /Applications/MAMP/htdocs/application/controllers/Order.php 1583
+CUSTOM - 2022-10-18 17:19:32 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 17:22:23 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 17:27:39 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 17:29:59 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 17:31:18 --> Order::updateWarehouse - /index.php/order/updateWarehouse?ship_id=5404: {"info":{"id":"5404","truck_id":"3","driver":"0","sub_driver":["0"],"created":"2022-10-18 17:15:08","allow":"0","status":"0","date":"2022-10-17T17:00:00.000Z","index":"2","note":null,"order_detail":[{"id":"47107","customer_id":"24","total_price":"965000","delivery":"0","status":"2","shipment_id":"5404","created":"2022-10-18 17:13:34","note":"","order_code":"CH000047107","saler":"3","old_debit":"0","last_bill":"0"}],"truck_name":"Xe3G-2953"},"truck_id":"3","driver":"0","sub_driver":["0"]}
+CUSTOM - 2022-10-18 17:31:18 --> Order::saveDevided - /index.php/order/saveDevided: [{"id":"306046","quantity":1},{"id":"306047","quantity":1},{"id":"306048","quantity":1},{"id":"306049","quantity":1},{"id":"306050","quantity":1}]
+CUSTOM - 2022-10-18 17:34:43 --> Order::index - /index.php/order: null
+CUSTOM - 2022-10-18 17:39:09 --> Order::updateWarehouse - /index.php/order/updateWarehouse?ship_id=5404: {"info":{"id":"5404","truck_id":"3","driver":"0","sub_driver":["0"],"created":"2022-10-18 17:15:08","allow":"0","status":"0","date":"2022-10-17T17:00:00.000Z","index":"2","note":null,"order_detail":[{"id":"47107","customer_id":"24","total_price":"769000","delivery":"0","status":"2","shipment_id":"5404","created":"2022-10-18 17:13:34","note":"","order_code":"CH000047107","saler":"3","old_debit":"0","last_bill":"0"}],"truck_name":"Xe3G-2953"},"truck_id":"3","driver":"0","sub_driver":["0"]}
+CUSTOM - 2022-10-18 17:39:09 --> Order::saveDevided - /index.php/order/saveDevided: [{"id":"306046","quantity":10},{"id":"306047","quantity":1},{"id":"306048","quantity":1},{"id":"306049","quantity":1},{"id":"306050","quantity":1}]

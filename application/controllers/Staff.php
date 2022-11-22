@@ -19,6 +19,7 @@ class Staff extends MY_Controller {
         $staff_id = $this->input->get('id');
         $staff = $this->staff->get_by_id($staff_id);
         echo json_encode(array('staff' => $staff));
+        
     }
     public function getPosition(){
         $this->load->model('position_model');
@@ -42,26 +43,47 @@ class Staff extends MY_Controller {
             $data = $this->upload->data();
             echo $data['file_name'];
         }
+        $this->load->library('redis');
+		$redis = $this->redis->config();
+		$redis->del('list_staff');
     }
     public function createStaff(){
         $staff = $this->input->json();
         $staff_id = $this->staff->insert($staff);
         echo json_encode($staff_id);
+        $this->load->library('redis');
+		$redis = $this->redis->config();
+		$redis->del('list_staff');
     }
     public function editStaff(){
         $staff_id = $this->input->get('id');
         $staff = $this->input->json();
         $this->staff->update($staff,array('id' => $staff_id));
+        $this->load->library('redis');
+		$redis = $this->redis->config();
+		$redis->del('list_staff');
     }
 
     public function getAll()
     {
-        $user = $this->staff->get_array(['active' => 0]);
-        echo json_encode(array('user' => $user));
+        $this->load->library('redis');
+		$redis = $this->redis->config();
+		$get = $redis->get('list_staff');
+        if(!isset($get)){
+            $user = $this->staff->get_array(['active' => 0]);
+            $redis->set('list_staff', json_encode($user));
+            echo json_encode(array('user' => $user));
+        }else{
+            echo json_encode(array('user' => json_decode($get)));
+        }
+       
     }
 
     public function delete() {
         $id = $this->input->post('id');
         $this->staff->delete(['id' => $id]);
+        $this->load->library('redis');
+		$redis = $this->redis->config();
+		$redis->del('list_staff');
     }
 }
